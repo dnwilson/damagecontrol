@@ -1,0 +1,7 @@
+<% @posts.each do |post| %>
+	<div class="row">
+		<div class="post-list">
+			<%= render partial: "post", locals: {post: post} %>
+		</div>
+	</div>
+<% end %>

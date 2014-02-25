@@ -1,0 +1,15 @@
+development:
+  adapter: postgresql
+  database: damage
+  host: localhost
+  
+test:
+  adapter: postgresql
+  database: damage
+  host: localhost
+
+production:
+  adapter: postgresql
+  database: damage
+  host: localhost
+  

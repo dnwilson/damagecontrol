@@ -1,0 +1,8 @@
+<%= bootstrap_form_for(@post, :validate => true, :html => {:class => 'post-form', :multipart => true, :autocomplete => :off}) do |f| %>
+	<%= render 'layouts/messages', object: f.object %>
+
+	<%= f.text_field :post_title %>
+	<%= f.text_field :post_content %>
+	<%= f.submit "Create Post" %>
+
+<% end %>
