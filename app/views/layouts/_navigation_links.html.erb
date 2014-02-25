@@ -3,7 +3,7 @@
 <li><%= link_to "contact", contact_path %></li>
 <% if signed_in? %>
 	<li id="fat-menu" class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.name %><b class="caret"></b></a>
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.fullname %><b class="caret"></b></a>
 		<ul class="dropdown-menu" role="menu" aria-labelledby="profileMenu">
 			<li role="presentation"><%= link_to "Add New Product", new_product_path %></li>
 			<li role="presentation"><%= link_to "Add New Post", new_post_path %></li>

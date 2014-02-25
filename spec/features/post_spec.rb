@@ -44,8 +44,8 @@ describe PostsController do
 			describe "create post" do
 				before do
 					visit new_post_path
-					fill_in "Post title", 	with: "Awesome post"
-					fill_in "Post content",	with: "This is an awesome post."
+					fill_in "Title", 	with: "Awesome post"
+					fill_in "Body",		with: "This is an awesome post."
 				end
 
 				it "should increment post count" do

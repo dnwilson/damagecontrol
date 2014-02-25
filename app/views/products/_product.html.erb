@@ -1,0 +1,23 @@
+<div class="col-md-12 col-sm-12 col-xs-12 product-<%= product.id %>">
+	<div class="col-md-3 col-sm-3 col-xs-3 product-<%= product.id %>-pic">
+		<img src="#">
+	</div>
+	<div class="col-md-7 col-sm-7 col-xs-7 product-<%= product.id %>-info">
+		<div class="product-<%= product.id %>-name">
+			<%= product.name %>
+		</div>
+
+		<div class="product-<%= product.id %>-desc">
+			<%= product.description %>
+		</div>
+
+		<div class="product-<%= product.id %>-price">
+			<%= product.price %>
+		</div>
+	</div>
+	<div class="col-md-2 col-sm-2 col-xs-2 product-<%= product.id %>-buy">
+		<div class="actions">
+      	<%= link_to "Add to Cart", line_items_path(:product_id => product), :method => :post, class: "btn btn-primary" %>
+    </div>
+	</div>
+</div>

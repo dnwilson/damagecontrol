@@ -44,13 +44,18 @@ describe ProductsController do
 			describe "create a product" do
 				before do
 				  visit new_product_path
-				  fill_in "Prod name", 				with: "Awesome Product"
-				  fill_in "Prod description",		with: "This is an awesome product."
-				  fill_in "Prod price",				with: 3.00
+				  fill_in "Name", 				with: "Awesome Product"
+				  fill_in "Description",		with: "This is an awesome product."
+				  fill_in "Price",				with: 3.00
 				end
 
 				it "should create a new product" do
 					expect{click_button "Create Product"}.to change(Product, :count).by(1)
+				end
+
+				it "should redirect to index path" do
+					click_button "Create Product"
+					page.should have_selector('.product-list')
 				end
 			end
 		end

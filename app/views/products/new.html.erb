@@ -1,10 +1,10 @@
 <%= bootstrap_form_for(@product, :validate => true, :html => {:class => 'product-form', :multipart => true, :autocomplete => :off}) do |f| %>
 	<%= render 'layouts/messages', object: f.object %>
 
-	<%= f.text_field :prod_name %>
-	<%= f.text_field :prod_description %>
-	<%= f.check_box  :prod_downloadable %>
-	<%= f.text_field :prod_price %>
+	<%= f.text_field :name %>
+	<%= f.text_field :description %>
+	<%= f.check_box  :downloadable %>
+	<%= f.text_field :price %>
 
 	<%= f.submit "Create Product" %>
 

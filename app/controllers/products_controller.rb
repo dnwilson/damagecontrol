@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
 
 		respond_to do |format|
 			if @product.save
-				format.html { redirect_to new_product_path}
+				format.html { redirect_to products_path}
 				format.json { render json: @product, status: :created, location: @product}
 				format.js
 			else
@@ -25,12 +25,16 @@ class ProductsController < ApplicationController
 			end
 		end
 	end
+
+	def index
+		@products = Product.all
+	end
 	
 
 	private
 		
 		def product_params
-			params.require(:product).permit(:prod_name, :prod_description, :prod_price, :prod_downloadable)
+			params.require(:product).permit(:name, :description, :price, :downloadable)
 		end
 
 		def verify_is_admin

@@ -5,13 +5,13 @@ describe Post do
 	let(:admin){FactoryGirl.create(:admin)}
 	let(:post){FactoryGirl.create(:post)}
 
-	before {@post = admin.posts.build(post_title: "Test Post", 
-		post_content: "This is a test post")}
+	before {@post = admin.posts.build(title: "Test Post", 
+		body: "This is a test post")}
 
 	subject{@post}
 
-	it{should respond_to(:post_title)}
-	it{should respond_to(:post_content)}
+	it{should respond_to(:title)}
+	it{should respond_to(:body)}
 	it{should respond_to(:user_id)}
 	it{should respond_to(:user)}
 	it{should belong_to(:user)}
@@ -23,13 +23,13 @@ describe Post do
 		it{should_not be_valid}
 	end
 
-	describe "when post_title is not present" do
-		before{@post.post_title = nil}
+	describe "when title is not present" do
+		before{@post.title = nil}
 		it{should_not be_valid}
 	end
 
-	describe "when post_content is not present" do
-		before{@post.post_content = nil}
+	describe "when body is not present" do
+		before{@post.body = nil}
 		it{should_not be_valid}
 	end
 end

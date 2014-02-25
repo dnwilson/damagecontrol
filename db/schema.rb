@@ -11,14 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140224175328) do
+ActiveRecord::Schema.define(version: 20140225222845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "carts", force: true do |t|
+    t.datetime "purchased_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "line_items", force: true do |t|
+    t.decimal  "unit_price"
+    t.integer  "product_id"
+    t.integer  "cart_id"
+    t.integer  "quantity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "line_items", ["id", "product_id", "cart_id"], name: "index_line_items_on_id_and_product_id_and_cart_id", unique: true, using: :btree
+
   create_table "posts", force: true do |t|
-    t.string   "post_title"
-    t.string   "post_content"
+    t.string   "title"
+    t.string   "body"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -26,11 +43,17 @@ ActiveRecord::Schema.define(version: 20140224175328) do
 
   add_index "posts", ["id", "user_id"], name: "index_posts_on_id_and_user_id", unique: true, using: :btree
 
+  create_table "product_categories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "products", force: true do |t|
-    t.string   "prod_name"
-    t.string   "prod_description"
-    t.boolean  "prod_downloadable", default: false
-    t.integer  "prod_price",        default: 0
+    t.string   "name"
+    t.string   "description"
+    t.boolean  "downloadable", default: false
+    t.decimal  "price"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -41,7 +64,7 @@ ActiveRecord::Schema.define(version: 20140224175328) do
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
     t.boolean  "admin",                  default: false
-    t.string   "name"
+    t.string   "fullname"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
