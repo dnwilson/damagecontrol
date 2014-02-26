@@ -48,6 +48,12 @@ group :development, :test do
    gem 'shoulda-matchers'
 end
 
+group :development do
+   gem 'better_errors'
+   gem 'binding_of_caller'
+   gem 'meta_request'
+end
+
 group :test do
    gem 'capybara', '~> 2.1'
    # gem 'growl'

@@ -14,3 +14,10 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+
+# Ignore db seeds
+/db/seeds.rb
+
+# Ignore certs config
+/config/app_config.yml

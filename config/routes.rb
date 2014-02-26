@@ -1,8 +1,5 @@
 Damagemiseh::Application.routes.draw do
-  get "product_categories/show"
-  get "product_categories/index"
-  get "carts/purchase"
-  get "carts/show"
+
   devise_for :users, :path =>'', :path_names => { :sign_in => 'login', :sign_out => 'logout', 
                                                   :sign_up => 'register'}
 
@@ -18,6 +15,7 @@ Damagemiseh::Application.routes.draw do
 
   resources :products
   resources :line_items
+  resources :payment_notifications
   resources :carts
 
   get "store", :to =>  "products#index"

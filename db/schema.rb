@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140225222845) do
+ActiveRecord::Schema.define(version: 20140226175734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(version: 20140225222845) do
   end
 
   add_index "line_items", ["id", "product_id", "cart_id"], name: "index_line_items_on_id_and_product_id_and_cart_id", unique: true, using: :btree
+
+  create_table "payment_notifications", force: true do |t|
+    t.text     "params"
+    t.integer  "cart_id"
+    t.string   "status"
+    t.string   "transaction_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "posts", force: true do |t|
     t.string   "title"
