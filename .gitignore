@@ -17,7 +17,7 @@
 
 
 # Ignore db seeds
-/db/seeds.rb
+#/db/seeds.rb
 
 # Ignore certs config
-/config/app_config.yml
+#/config/app_config.yml
