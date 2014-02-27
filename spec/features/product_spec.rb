@@ -44,6 +44,7 @@ describe ProductsController do
 			describe "create a product" do
 				before do
 				  visit new_product_path
+				  attach_file('Image', "#{Rails.root}/spec/fixtures/rails.png")
 				  fill_in "Name", 				with: "Awesome Product"
 				  fill_in "Description",		with: "This is an awesome product."
 				  fill_in "Price",				with: 3.00
@@ -51,6 +52,11 @@ describe ProductsController do
 
 				it "should create a new product" do
 					expect{click_button "Create Product"}.to change(Product, :count).by(1)
+				end
+
+				it "should have product image path" do
+					click_button "Create Product"
+					page.should have_css('img')
 				end
 
 				it "should redirect to index path" do

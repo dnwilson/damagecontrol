@@ -4,10 +4,11 @@ describe Product do
 	let(:product){FactoryGirl.create(:product)}
 
 	before {@product = Product.create(name: product.name, 
-		description: product.description, price: 30.00)}
+		description: product.description, price: 30.00, image: File.new(Rails.root + "spec/fixtures/rails.png"))}
 
 	subject{@product}
 
+	it{should respond_to(:image)}
 	it{should respond_to(:name)}
 	it{should respond_to(:description)}
 	it{should respond_to(:price)}

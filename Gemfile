@@ -7,6 +7,7 @@ gem 'thin'
 gem 'pg'
 gem 'pg_search'
 gem 'devise'
+gem 'paperclip', '~> 4.1'
 
 # Use SCSS for stylesheets
 gem 'rails_layout'
