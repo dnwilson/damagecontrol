@@ -28,4 +28,13 @@ Damagemiseh::Application.configure do
   config.assets.debug = true
 
   Paperclip.options[:command_path] = "/usr/local/bin/"
+
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+    ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
+      :login => "seller_api1.damagecontrolfamily.com",
+      :password => "1393431569",
+      :signature => "AieulqpDy5CVnP3q6v8mSHD-vvt6AmCib.3IK1eOjhokWLmS4flBl2QN"
+    )
+  end
 end

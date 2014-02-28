@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140227163732) do
+ActiveRecord::Schema.define(version: 20140228190156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,36 @@ ActiveRecord::Schema.define(version: 20140227163732) do
   end
 
   add_index "line_items", ["id", "product_id", "cart_id"], name: "index_line_items_on_id_and_product_id_and_cart_id", unique: true, using: :btree
+
+  create_table "order_transactions", force: true do |t|
+    t.integer  "order_id"
+    t.string   "action"
+    t.integer  "amount"
+    t.boolean  "success"
+    t.string   "authorization"
+    t.string   "message"
+    t.text     "params"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "order_transactions", ["id", "order_id"], name: "index_order_transactions_on_id_and_order_id", using: :btree
+
+  create_table "orders", force: true do |t|
+    t.integer  "cart_id"
+    t.integer  "user_id"
+    t.string   "ip_address"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "card_type"
+    t.date     "card_expires_on"
+    t.string   "billing_address"
+    t.string   "shipping_address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "orders", ["id", "user_id", "cart_id"], name: "index_orders_on_id_and_user_id_and_cart_id", unique: true, using: :btree
 
   create_table "payment_notifications", force: true do |t|
     t.text     "params"

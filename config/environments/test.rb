@@ -33,4 +33,13 @@ Damagemiseh::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+  
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :production
+    ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
+      :login => "seller_api1.damagecontrolfamily.com",
+      :password => "1393431569",
+      :signature => "AieulqpDy5CVnP3q6v8mSHD-vvt6AmCib.3IK1eOjhokWLmS4flBl2QN"
+    )
+  end
 end
