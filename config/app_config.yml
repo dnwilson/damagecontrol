@@ -11,7 +11,7 @@ test:
   paypal_url: testpaypalurl
   
 production:
-  paypal_email: dnkw@hotmail.com
-  paypal_secret: kasw
-  paypal_cert_id: jjjjjjjjj
-  paypal_url: "https://www.paypal.com/cgi-bin/webscr"
+  paypal_email: seller@damagecontrolfamily.com
+  paypal_secret: foobar
+  paypal_cert_id: DSUTZBZLUCCV8
+  paypal_url: "https://www.sandbox.paypal.com/cgi-bin/webscr"
