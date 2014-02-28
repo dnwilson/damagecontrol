@@ -9,7 +9,7 @@ class Cart < ActiveRecord::Base
 	def paypal_encrypted(return_url, notify_url)
 		values = {
 		:business => APP_CONFIG[:paypal_email],
-		:cmd => '_s_xclick',
+		:cmd => '_s-xclick',
 		:upload => 1,
 		:return => return_url,
 		:invoice => id,
