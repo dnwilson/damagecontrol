@@ -21,3 +21,4 @@
 
 # Ignore certs config
 #/config/app_config.yml
+.env
