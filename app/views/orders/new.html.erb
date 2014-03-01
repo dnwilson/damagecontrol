@@ -1,29 +1,36 @@
 <div class="row">
 	<div class="col-md-8 col-sm-8 col-xs-12">
 		<%= bootstrap_form_for(@order, :validate => true,:html => {:class => "order-form", :multipart => true, :autocomplete => false} ) do |f| %>
-			<%= render 'shared/error_messages', object: f.object %>
-			<p>
-				<%= f.text_field :first_name %>
-			</p>
-			<p>
-				<%= f.text_field :last_name %>
-			</p>
-			<p>
-				<%= f.select :card_type, [["Visa", "visa"], ["Mastercard", "master"], ["Discover", "discover"], ["American Express", "american_express"]] %>
-			</p>
-			<p>
-				<%= f.text_field :card_number %>
-			</p>
-			<p>
-				<%= f.text_field :card_verification, label: "Card Verification Value (CVV)" %>
-			</p>
-			<p>
-				<%= f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :add_month_numbers => true %>
-			</p>
-			<p>
-				<%= f.submit "Submit" %>
-			</p>
+			<% if @order.express_token.blank? %>
+				<%= render 'shared/error_messages', object: f.object %>
+				<p>
+					<%= f.text_field :first_name %>
+				</p>
+				<p>
+					<%= f.text_field :last_name %>
+				</p>
+				<p>
+					<%= f.select :card_type, [["Visa", "visa"], ["Mastercard", "master"], ["Discover", "discover"], ["American Express", "american_express"]] %>
+				</p>
+				<p>
+					<%= f.text_field :card_number %>
+				</p>
+				<p>
+					<%= f.text_field :card_verification, label: "Card Verification Value (CVV)" %>
+				</p>
+				<p>
+					<%= f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :add_month_numbers => true %>
+				</p>
+				<p>
+					<%= f.submit "Submit" %>
+				</p>
+			<% else %>
+				<%= f.hidden_field :express_token %>
+	    		<p>Name: <%=h @order.first_name %> <%=h @order.last_name %></p>
+				<p>TODO Display Order Confirmation Details</p>
+			<% end %>
+		<%= f.submit "Complete Order" %>
+	<% end %>
 
-		<% end %>
 	</div>
 </div>

@@ -2,8 +2,32 @@ class OrdersController < ApplicationController
   before_filter :authenticate_user!
   force_ssl unless Rails.env.development?
 
+  def express
+  	options = {
+  		:ip => 				request.remote_ip,
+  		:return_url =>         new_order_url,
+		:cancel_return_url => 	products_url,
+  		:items =>
+  			current_cart.line_items.each do |line_item|
+	  			 [{
+		  			:name 			=> line_item.product.name, 
+		  			:description 	=> line_item.product.description,
+		  			:amount 		=> line_item.product.price
+	  			}]
+  			end
+  		
+  	}
+  	response = EXPRESS_GATEWAY.setup_purchase(current_cart.build_order.price_in_cents, 
+		options
+		# :ip                => request.remote_ip,
+		# :return_url        => new_order_url,
+		# :cancel_return_url => products_url
+	)
+	redirect_to EXPRESS_GATEWAY.redirect_url_for(response.token)
+  end
+
   def new
-  	@order = Order.new
+  	@order = Order.new(:express_token => params[:token])
   end
 
   def create

@@ -31,10 +31,12 @@ Damagemiseh::Application.configure do
 
   config.after_initialize do
     ActiveMerchant::Billing::Base.mode = :test
-    ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
+    paypal_options = {
       :login => "seller_api1.damagecontrolfamily.com",
       :password => "1393431569",
       :signature => "AieulqpDy5CVnP3q6v8mSHD-vvt6AmCib.3IK1eOjhokWLmS4flBl2QN"
-    )
+    }
+    ::STANDARD_GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(paypal_options)
+    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
   end
 end
