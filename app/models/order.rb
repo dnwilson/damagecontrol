@@ -8,7 +8,7 @@ class Order < ActiveRecord::Base
 	attr_accessor :card_number, :card_verification
 
 	def purchase
-		response = GATEWAY.purchase(price_in_cents, credit_card, purchase_options)
+		response = process_purchase
 		transactions.create!(action: "purchase", amount: price_in_cents, response: response)
 		cart.update_attribute(:purchased_at, Time.now) if response.success?
 		response.success?
@@ -18,11 +18,19 @@ class Order < ActiveRecord::Base
 		(cart.total_price*100).round
 	end
 
-
+	def express_token=(token)
+	  write_attribute(:express_token, token)
+	  if new_record? && !token.blank?
+	    details = EXPRESS_GATEWAY.details_for(token)
+	    self.express_payer_id = details.payer_id
+	    self.first_name = details.params["first_name"]
+	    self.last_name = details.params["last_name"]
+	  end
+	end
 
 	private
 
-	def purchase_options
+	def standard_purchase_options
 		{
 			ip: 				ip_address,
 			billing_address: 	{
@@ -36,6 +44,22 @@ class Order < ActiveRecord::Base
 		}		
 	end
 
+	def express_purchase_options
+		{
+			:ip 		=> ip_address,
+			:token 		=> express_token,
+			:payer_id 	=> express_payer_id
+		}
+	end
+
+	def process_purchase
+		if express_token.blank?
+			STANDARD_GATEWAY.purchase(price_in_cents, credit_card, standard_purchase_options)
+		else
+			EXPRESS_GATEWAY.purchase(price_in_cents, express_purchase_options)
+		end
+	end
+
 	def validate_card
 		unless credit_card.valid?
 			credit_card.errors.full_messages.each do |message|
@@ -44,6 +68,8 @@ class Order < ActiveRecord::Base
 			end			
 		end
 	end
+
+
 
 	def credit_card
 		@credit_card ||= ActiveMerchant::Billing::CreditCard.new(

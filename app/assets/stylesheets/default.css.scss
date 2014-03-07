@@ -1,0 +1,81 @@
+/*
+#1 = 35A49C
+#2 = 79CDC0
+*/
+$mainLinkColor: #ffcc00;
+$secLinkColor: #cc9900;
+
+a {
+	color: $mainLinkColor;
+}
+a:hover {
+	color: $secLinkColor;
+}
+
+/* menu */
+.nav>li>a:hover {
+	color: darken(white, 15%);
+}
+
+.navbar .navbar-nav > .active > a {
+	color: $secLinkColor;
+}
+
+/* flexslider */
+.flex-control-paging li a {
+	background: $mainLinkColor;
+}
+
+.flex-direction-nav a:hover{
+	background-color:$mainLinkColor;
+}
+
+.testimonial span.author a {
+	color: $secLinkColor;
+}
+
+/* --- icon box hover --- */
+.hi-icon-effect-5 .hi-icon {
+	color: $mainLinkColor;
+	box-shadow: 0 0 0 4px $mainLinkColor;
+}
+.no-touch .hi-icon-effect-5 .hi-icon:hover {
+	background: $mainLinkColor;
+	box-shadow: 0 0 0 8px  $secLinkColor;
+}
+
+
+/* events */
+.events-item .events-desc {
+	background: $mainLinkColor;
+}
+
+/* btn */
+.btn-theme {
+  background: $secLinkColor;
+}
+.btn-theme:hover,.btn-theme:focus,.btn-theme:active{
+  background: $mainLinkColor;
+}
+.btn-cta,.btn-cta.btn-lg {
+  background: $mainLinkColor;
+  border-color: $secLinkColor;
+}
+
+.btn-cta:focus,.btn-cta:active{
+   border-color: $mainLinkColor;
+}
+
+/* contact */
+.validation {
+	color:$mainLinkColor;
+}
+
+/* footer */
+.social-circle li a {
+	background:$mainLinkColor;
+}
+
+a.scrollup{
+	background:$mainLinkColor;
+}

@@ -1,7 +1,5 @@
 Damagemiseh::Application.routes.draw do
 
-  get "orders/new"
-  get "orders/create"
   devise_for :users, :path =>'', :path_names => { :sign_in => 'login', :sign_out => 'logout', 
                                                   :sign_up => 'register'}
 
@@ -18,7 +16,10 @@ Damagemiseh::Application.routes.draw do
   resources :products
   resources :line_items
   resources :carts
-  resources :orders
+  resources :posts
+  resources :orders do
+    get 'express', on: :new
+  end
 
   get "store", :to =>  "products#index"
 
@@ -27,8 +28,6 @@ Damagemiseh::Application.routes.draw do
 
   get "mycart", :controller => 'carts', :action => 'show', :id => 'current'
 
-
-  resources :posts
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
