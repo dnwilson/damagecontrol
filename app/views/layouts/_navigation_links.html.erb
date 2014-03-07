@@ -1,4 +1,11 @@
-<%# add navigation links to this file %>
+<li class="active"><%= link_to "Home", root_path %></li>
+<li><a href="#section-members">Members</a></li>
+<li><a href="#section-works">Events</a></li>
+<li><a href="#section-gallery">Gallery</a></li>
+<li><a href="#section-contact">Contact</a></li>
+<li><a href="#section-shop">Shop</a></li>
+
+<!-- <%# add navigation links to this file %>
 <li><%= link_to "about", about_path %></li>
 <li><%= link_to "contact", contact_path %></li>
 <% if signed_in? %>
@@ -12,4 +19,4 @@
 	</li>
 <% else %>
 	<li><%= link_to "login", login_path %></li>
-<% end %>
+<% end %> -->

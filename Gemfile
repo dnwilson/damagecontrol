@@ -6,7 +6,7 @@ gem 'rails', '4.0.2'
 gem 'thin'
 gem 'pg'
 gem 'pg_search'
-gem 'devise'
+gem 'devise', '~> 3.2.2'
 gem 'paperclip', '~> 4.1'
 gem 'activemerchant'
 
@@ -15,7 +15,7 @@ gem 'rails_layout'
 gem 'sass-rails', '~> 4.0.0'
 gem 'bootstrap-sass', '~> 3.1.0'
 gem 'bootstrap_form'
-
+gem 'font-awesome-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 

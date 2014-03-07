@@ -1,2 +1,86 @@
-<% provide(:title) %>
-This is the home page
+<%= render partial: "featured" %>
+
+<%= render partial: "about" %>
+	
+<%= render partial: "quote" %>
+	
+<%= render partial: "members" %>
+<!-- /about -->
+
+<!-- spacer section:stats -->
+<section id="parallax1" class="section pad-top40 pad-bot40" data-stellar-background-ratio="0.5">
+	<div class="container">
+    <div class="align-center pad-top40 pad-bot40">
+		<blockquote class="bigquote color-white">From wah day mi nuh deal wid fren <br>Cause a family mi ting deh, mi ting deh <br> If mi see yuh and walk pass yuh<br>Dat mean yuh nuh in deh</blockquote>
+		<p class="author color-white">&mdash; War Professa</p>
+    </div>
+	</div>	
+</section>
+
+<%= render partial: "events" %>
+
+<section id="parallax2" class="section parallax" data-stellar-background-ratio="0.5">	
+    <div class="align-center pad-top40 pad-bot40">
+        <blockquote class="bigquote color-white">Even if a bread alone yuh live on<br>Give thanks fi di meal nuh matter if yuh naave nuh Chiffon<br>Butter fi real cause nuff people naave nuttin fi nyam<br>Not even sugar n' wata dem nuh have nuttin fi sip on</blockquote>
+		<p class="author color-white">&mdash; Fiyah Damage</p>
+    </div>
+</section>
+
+<section id="section-shop" class="section appear clearfix">
+	<% @products.each do |product| %>
+		<div class="product-list">
+			<%= render partial: "shared/product", locals: {product: product} %>
+		</div>
+	<% end %>
+</section>
+
+<!-- contact -->
+<!-- <section id="section-contact" class="section appear clearfix">
+	<div class="container">
+		
+		<div class="row mar-bot40">
+			<div class="col-md-offset-3 col-md-6">
+				<div class="section-header">
+					<h2 class="section-heading animated" data-animation="bounceInUp">Contact us</h2>
+					<p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet consectetur, adipisci velit, sed quia non numquam.</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<div class="cform" id="contact-form">
+					<div id="sendmessage">
+						 Your message has been sent. Thank you!
+					</div>
+					<form action="contact/contact.php" method="post" role="form" class="contactForm">
+					  <div class="form-group">
+						<label for="name">Your Name</label>
+						<input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="maxlen:4" data-msg="Please enter at least 4 chars" />
+						<div class="validation"></div>
+					  </div>
+					  <div class="form-group">
+						<label for="email">Your Email</label>
+						<input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+						<div class="validation"></div>
+					  </div>
+					  <div class="form-group">
+						<label for="subject">Subject</label>
+						<input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="maxlen:4" data-msg="Please enter at least 8 chars of subject" />
+						<div class="validation"></div>
+					  </div>
+					  <div class="form-group">
+						<label for="message">Message</label>
+						<textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us"></textarea>
+						<div class="validation"></div>
+					  </div>
+					  
+					  <button type="submit" class="btn btn-theme pull-left">SEND MESSAGE</button>
+					</form>
+
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</section>  -->
+<%= render partial: "footer" %>

@@ -30,7 +30,7 @@ class Order < ActiveRecord::Base
 
 	private
 
-	def purchase_options
+	def standard_purchase_options
 		{
 			ip: 				ip_address,
 			billing_address: 	{
@@ -42,6 +42,14 @@ class Order < ActiveRecord::Base
 				zip: 		"10001"
 			} 
 		}		
+	end
+
+	def express_purchase_options
+		{
+			:ip 		=> ip_address,
+			:token 		=> express_token,
+			:payer_id 	=> express_payer_id
+		}
 	end
 
 	def process_purchase
@@ -60,6 +68,8 @@ class Order < ActiveRecord::Base
 			end			
 		end
 	end
+
+
 
 	def credit_card
 		@credit_card ||= ActiveMerchant::Billing::CreditCard.new(
