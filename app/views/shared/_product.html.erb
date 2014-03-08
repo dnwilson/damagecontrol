@@ -1,19 +1,22 @@
-<div class="align-center product-<%= product.id %>">
+<div class="container">
 	<div class="col-md-12">
-		<div class=" product-<%= product.id %>">
-			<%= image_tag product.image.url(:thumb) %>
+		<div class="row">
+			<div class="products-items isotopeWrapper clearfix" id="<%= product.id %>">
+
+			<article class="col-md-4 isotopeItem spring">
+				<div class="products-item">
+					<%= image_tag product.image.url(:med) %>
+					 <div class="products-desc align-center">
+						<div class="product-info">
+							<h5><a href="#"><%= product.name %></a></h5>
+							<a href="<%= product.image.url(:med) %>" class="fancybox"><i class="fa fa-plus fa-2x"></i></a></br>
+							<%= link_to line_items_path(:product_id => product), :method => :post, class: "btn btn-primary btn-theme prod-add"  do %>
+							  <span class="fa fa-shopping-cart"></span><%= money_helper(product.price) %>
+							<% end %>
+						</div>
+					 </div>
+				</div>
+			</div>
 		</div>
-		<div class="product-<%= product.id %>-name">
-			<%= product.name %>
-		</div>
-		<div class="product-<%= product.id %>-desc">
-			<%= product.description %>
-		</div>
-		<div class="product-<%= product.id %>-price">
-			<%= product.price %>
-		</div>
-		<div class="product-<%= product.id %>-buy">
-	      	<%= link_to "Add to Cart", line_items_path(:product_id => product), :method => :post, class: "btn btn-primary" %>
-	    </div>
 	</div>
 </div>

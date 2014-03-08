@@ -7,5 +7,11 @@ module ApplicationHelper
 		else
 			"#{base_title} | #{page_title}"
 		end
+	end  
+
+	def money_helper(money)
+		symbol = "$"
+		price_in_cents = (money*100).round
+	  	"#{symbol}#{money}" 
 	end
 end
