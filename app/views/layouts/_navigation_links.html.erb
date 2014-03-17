@@ -1,22 +1,41 @@
-<li class="active"><%= link_to "Home", root_path %></li>
-<li><a href="#section-members">Members</a></li>
-<li><a href="#section-works">Events</a></li>
-<li><a href="#section-gallery">Gallery</a></li>
-<li><a href="#section-contact">Contact</a></li>
-<li><a href="#section-shop">Shop</a></li>
-
-<!-- <%# add navigation links to this file %>
-<li><%= link_to "about", about_path %></li>
-<li><%= link_to "contact", contact_path %></li>
-<% if signed_in? %>
-	<li id="fat-menu" class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.fullname %><b class="caret"></b></a>
-		<ul class="dropdown-menu" role="menu" aria-labelledby="profileMenu">
-			<li role="presentation"><%= link_to "Add New Product", new_product_path %></li>
-			<li role="presentation"><%= link_to "Add New Post", new_post_path %></li>
-			<li role="presentation"><%= link_to "logout", logout_path, method: :delete %></li>
-		</ul>
-	</li>
+<% if current_page?(root_path) %>
+	<li class="active"><a href="#featured">Home</a></li>
+	<li><a href="#section-members">Members</a></li>
+	<li><a href="#section-works">Events</a></li>
+	<li><a href="#section-gallery">Gallery</a></li>
+	<li><a href="#section-contact">Contact</a></li>
+	<li><a href="#section-shop">Shop</a></li>
+	<% if signed_in? %>
+		<% if current_user.admin? %>
+			<li><%= link_to "MyDC", panel_path %></li>
+		<% else %>
+			<li><%= link_to "MyDC", settings_path%></li>
+		<% end %>
+	<% else %>
+		<li><%= link_to "Login", login_path %></li>
+	<% end %>
+	<% if !session[:cart_id].nil? %>
+		<li><%= link_to mycart_path do %><i class="fa fa-shopping-cart"></i><% end %>
+		</li>
+	<% end %>
 <% else %>
-	<li><%= link_to "login", login_path %></li>
-<% end %> -->
+	<li><%= link_to "Home", root_path %></li>
+	<li><a href="<%= root_path %>#section-members">Members</a></li>
+	<li><a href="<%= root_path %>#section-works">Events</a></li>
+	<li><a href="<%= root_path %>#section-gallery">Gallery</a></li>
+	<li><a href="<%= root_path %>#section-contact">Contact</a></li>
+	<li class="<%= 'active' if current_page?(shop_path) || current_page?(orders_path) || current_page?(products_path) %>"><a href="<%= root_path %>#section-shop">Shop</a></li>
+	<% if signed_in? %>
+		<% if current_user.admin? %>
+			<li class="<%= 'active' if current_page?(panel_path) %>"><%= link_to "MyDC", panel_path %></li>
+		<% else %>
+			<li class="<%= 'active' if current_page?(settings_path) %>"><%= link_to "MyDC", settings_path%></li>
+		<% end %>
+	<% else %>
+		<li class="<%= 'active' if current_page?(login_path) %>"><%= link_to "Login", login_path %></li>
+	<% end %>
+	<% if !session[:cart_id].nil? %>
+		<li><%= link_to mycart_path do %><i class="fa fa-shopping-cart"></i><% end %>
+		</li>
+	<% end %>
+<% end %>

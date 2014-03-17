@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140228214832) do
+ActiveRecord::Schema.define(version: 20140317005927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,20 @@ ActiveRecord::Schema.define(version: 20140228214832) do
     t.datetime "updated_at"
   end
 
+  create_table "inventories", force: true do |t|
+    t.integer  "product_id"
+    t.integer  "xsmall"
+    t.integer  "small"
+    t.integer  "medium"
+    t.integer  "large"
+    t.integer  "xlarge"
+    t.integer  "xxlarge"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "inventories", ["id", "product_id"], name: "index_inventories_on_id_and_product_id", unique: true, using: :btree
+
   create_table "line_items", force: true do |t|
     t.decimal  "unit_price"
     t.integer  "product_id"
@@ -29,6 +43,7 @@ ActiveRecord::Schema.define(version: 20140228214832) do
     t.integer  "quantity"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "size"
   end
 
   add_index "line_items", ["id", "product_id", "cart_id"], name: "index_line_items_on_id_and_product_id_and_cart_id", unique: true, using: :btree
@@ -61,6 +76,7 @@ ActiveRecord::Schema.define(version: 20140228214832) do
     t.datetime "updated_at"
     t.string   "express_token"
     t.string   "express_payer_id"
+    t.string   "status"
   end
 
   add_index "orders", ["id", "user_id", "cart_id"], name: "index_orders_on_id_and_user_id_and_cart_id", unique: true, using: :btree
@@ -74,12 +90,31 @@ ActiveRecord::Schema.define(version: 20140228214832) do
     t.datetime "updated_at"
   end
 
+  create_table "photos", force: true do |t|
+    t.string   "desc"
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
+
+  add_index "photos", ["imageable_id", "imageable_type"], name: "index_photos_on_imageable_id_and_imageable_type", using: :btree
+
   create_table "posts", force: true do |t|
     t.string   "title"
-    t.string   "body"
+    t.text     "body"
+    t.text     "body_html"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "posts", ["id", "user_id"], name: "index_posts_on_id_and_user_id", unique: true, using: :btree
@@ -92,9 +127,10 @@ ActiveRecord::Schema.define(version: 20140228214832) do
 
   create_table "products", force: true do |t|
     t.string   "name"
-    t.string   "description"
-    t.boolean  "downloadable",       default: false
+    t.text     "description"
+    t.boolean  "downloadable",        default: false
     t.decimal  "price"
+    t.integer  "product_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_file_name"
@@ -103,13 +139,15 @@ ActiveRecord::Schema.define(version: 20140228214832) do
     t.datetime "image_updated_at"
   end
 
+  add_index "products", ["id", "product_category_id"], name: "index_products_on_id_and_product_category_id", unique: true, using: :btree
   add_index "products", ["id"], name: "index_products_on_id", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
     t.boolean  "admin",                  default: false
-    t.string   "fullname"
+    t.string   "first_name"
+    t.string   "last_name"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -120,6 +158,21 @@ ActiveRecord::Schema.define(version: 20140228214832) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "phone_number"
+    t.string   "billing_address1"
+    t.string   "billing_address2"
+    t.string   "billing_state"
+    t.string   "billing_zip"
+    t.string   "billing_city"
+    t.string   "billing_country"
+    t.string   "shipping_first_name"
+    t.string   "shipping_last_name"
+    t.string   "shipping_address1"
+    t.string   "shipping_address2"
+    t.string   "shipping_state"
+    t.string   "shipping_zip"
+    t.string   "shipping_city"
+    t.string   "shipping_country"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

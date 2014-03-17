@@ -1,8 +1,33 @@
-<%= bootstrap_form_for(@post, :validate => true, :html => {:class => 'post-form', :multipart => true, :autocomplete => :off}) do |f| %>
-	<%= render 'shared/error_messages', object: f.object %>
+<section class="panel">
+  <div class="container">
+    <div class="row mar-bot40">
+      <div class="col-md-offset-2 col-md-8">
+        <%= render partial: "shared/admin_nav" %>
+        <div class="row mar-top25">
+			<div class="col-md-12 pad-top40 pad-bot40">
+				<%= form_for(@post, :validate => true, :html => {:class => 'post-form', :multipart => true, :autocomplete => :off}) do |f| %>
+					<%= render 'shared/error_messages', object: f.object %>
 
-	<%= f.text_field :title %>
-	<%= f.text_field :body %>
-	<%= f.submit "Create Post" %>
+					<div class="col-md-offset-1 col-md-10">
+					    <%= f.text_field :title, placeholder: "Title" %>
+					</div>
 
-<% end %>
+					<div class="col-md-offset-1 col-md-10">
+					    <%= f.text_field :title, placeholder: "Title", :"data-url" => "/posts/#{@post.id}/photos", :multiple => "", :name => "photo[photo]", :type => "file" %>
+					</div>
+
+					<div class="col-md-offset-1 col-md-10">
+						<%= f.text_area :body, placeholder: "Place post details here..." %>
+					</div>
+					
+					<div class="col-md-offset-1 col-md-10">
+						<%= f.submit "Create Post", class: "btn btn-black" %>
+					</div>
+
+				<% end %>
+			</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

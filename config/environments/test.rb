@@ -36,7 +36,7 @@ Damagemiseh::Application.configure do
   
   config.after_initialize do
     ActiveMerchant::Billing::Base.mode = :test
-    ::STANDARD_GATEWAY = ActiveMerchant::Billing::BogusGateway.new(paypal_options)
-    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::BogusGateway.new(paypal_options)
+    ::STANDARD_GATEWAY = ActiveMerchant::Billing::BogusGateway.new
+    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::BogusGateway.new
   end
 end

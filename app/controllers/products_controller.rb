@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
 
 		respond_to do |format|
 			if @product.save
-				format.html { redirect_to products_path}
+				format.html { redirect_to panel_path}
 				format.json { render json: @product, status: :created, location: @product}
 				format.js
 			else
@@ -29,12 +29,15 @@ class ProductsController < ApplicationController
 	def index
 		@products = Product.all
 	end
-	
+
+	def show
+		@product = Product.find(params[:id])
+	end
 
 	private
 		
 		def product_params
-			params.require(:product).permit(:image, :name, :description, :price, :downloadable)
+			params.require(:product).permit(:image, :name, :description, :product_category_id, :price, :downloadable)
 		end
 
 		def verify_is_admin

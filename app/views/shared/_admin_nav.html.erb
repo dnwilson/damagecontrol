@@ -1,0 +1,12 @@
+<div class="greeting row mar-bot25">
+	<div class="col-md-10"><h2>Welcome, <%= current_user.first_name %></h2></div>
+	<div class="col-md-2 logout-btn"><%= button_to "logout", logout_path, method: :delete, class: "btn btn-black" %></div>
+</div>
+<div class="settings-nav row">
+	<ul class="nav nav-pills nav-justified">
+		<li class="<%= 'active' if current_page?(new_product_path) %>"><%= link_to "Add New Product", new_product_path %></li>
+		<li class="<%= 'active' if current_page?(new_post_path) %>"><%= link_to "Add New Post", new_post_path %>
+		<li class="<%= 'active' if current_page?(pending_orders_path) %>"><%= link_to 'Pending Orders', pending_orders_path %></li>
+		<li></li>
+	</ul>
+</div>

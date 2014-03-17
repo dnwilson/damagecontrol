@@ -4,6 +4,7 @@ class PostsController < ApplicationController
 
 	def new
 		@post = Post.new
+		@categories = ProductCategory.all
 	end
 
 	def create

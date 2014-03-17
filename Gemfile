@@ -9,13 +9,17 @@ gem 'pg_search'
 gem 'devise', '~> 3.2.2'
 gem 'paperclip', '~> 4.1'
 gem 'activemerchant'
+gem 'auto_html'
 
 # Use SCSS for stylesheets
 gem 'rails_layout'
 gem 'sass-rails', '~> 4.0.0'
 gem 'bootstrap-sass', '~> 3.1.0'
 gem 'bootstrap_form'
+gem 'country_select'
 gem 'font-awesome-rails'
+gem "jquery-fileupload-rails"
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 

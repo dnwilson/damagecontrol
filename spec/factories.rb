@@ -3,14 +3,16 @@ FactoryGirl.define do
 		sequence(:email)				{Forgery::Internet.email_address}
 		password						"password"
 		password_confirmation			"password"
-		fullname						"Some Guy"
+		first_name						"Some"
+		last_name						"Guy"
 	end
 
 	factory :admin, class: User do
 		sequence(:email)				{Forgery::Internet.email_address}
 		password						"password"
 		password_confirmation			"password"
-		fullname						"Admin"
+		first_name						"Admin"
+		last_name						"Admin"
 		admin 							true
 	end
 
@@ -24,6 +26,7 @@ FactoryGirl.define do
 		name			"Some Product"
 		description		"This product is awesome"
 		price			300
+		product_category_id		[1, 2, 3].sample
 		downloadable	false
 	end
 end

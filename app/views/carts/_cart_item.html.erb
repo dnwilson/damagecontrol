@@ -1,0 +1,24 @@
+<div class="cart-item row" id="<%=h line_item.id %>">
+  <div class="item-desc col-md-9">
+    <div class="row">
+      <div class="item-pic col-md-4">
+        <%= image_tag Product.find(line_item.product).image.url(:thumb) %>
+      </div>
+      <div class="item-det mar-top30">
+        <h4><%=h line_item.product.name %></h4>
+        <p><%=h line_item.size %></p>
+        <%=h button_to "REMOVE", line_item_path(line_item.product.id), method: :delete, class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+  <div class="item-qty mar-top30 col-md-1">
+    <%= form_for(line_item, :html => {:id => "item-#{line_item.id}"}) do |f| %>
+      <%= f.select :quantity, [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6], [7, 7], [8, 8], [9, 9], [10, 10]], {selected: line_item.quantity}, {onchange: "$('#item-#{line_item.id}').submit();"} %>
+     <!--  <%= f.submit "Update" %> -->
+    <% end %>
+
+  </div>
+  <div class="item-price mar-top30 col-md-2">
+    <%= number_to_currency(line_item.full_price) %>
+  </div>
+</div>

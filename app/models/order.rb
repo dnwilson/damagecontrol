@@ -9,7 +9,7 @@ class Order < ActiveRecord::Base
 
 	def purchase
 		response = process_purchase
-		transactions.create!(action: "purchase", amount: price_in_cents, response: response)
+		transactions.create!(action: "purchase", amount: price_in_cents, response: response, status: "Paid")
 		cart.update_attribute(:purchased_at, Time.now) if response.success?
 		response.success?
 	end
@@ -19,7 +19,8 @@ class Order < ActiveRecord::Base
 	end
 
 	def express_token=(token)
-	  write_attribute(:express_token, token)
+	  # write_attribute(:express_token, token)
+	  self[:express_token] = token
 	  if new_record? && !token.blank?
 	    details = EXPRESS_GATEWAY.details_for(token)
 	    self.express_payer_id = details.payer_id
@@ -28,7 +29,19 @@ class Order < ActiveRecord::Base
 	  end
 	end
 
+	def pending
+		where(status: "Paid")
+	end
+
 	private
+	
+	def process_purchase
+		if express_token.blank?
+			STANDARD_GATEWAY.purchase(price_in_cents, credit_card, standard_purchase_options)
+		else
+			EXPRESS_GATEWAY.purchase(price_in_cents, express_purchase_options)
+		end
+	end
 
 	def standard_purchase_options
 		{
@@ -52,23 +65,14 @@ class Order < ActiveRecord::Base
 		}
 	end
 
-	def process_purchase
-		if express_token.blank?
-			STANDARD_GATEWAY.purchase(price_in_cents, credit_card, standard_purchase_options)
-		else
-			EXPRESS_GATEWAY.purchase(price_in_cents, express_purchase_options)
-		end
-	end
-
 	def validate_card
-		unless credit_card.valid?
+		if express_token.blank? && !credit_card.valid?
 			credit_card.errors.full_messages.each do |message|
 				# errors.add_to_base message
 				errors.add :base, message
 			end			
 		end
 	end
-
 
 
 	def credit_card

@@ -11,7 +11,7 @@ describe PostsController do
 
 		it "should deny access to guest users" do
 			visit new_post_path
-			expect(page).should have_content("You need to sign in or sign up before continuing.")
+			expect(page).to have_content("You need to sign in or sign up before continuing.")
 		end
 
 		describe "signed in users who are not admin" do
@@ -24,7 +24,7 @@ describe PostsController do
 
 			it "should not allow access to new post page" do
 				visit new_post_path
-				page.should have_content("You do not have permission")
+				expect(page).to have_content("You do not have permission")
 			end
 		end
 
@@ -38,14 +38,14 @@ describe PostsController do
 
 			it "should allow access to new post page" do
 				visit new_post_path
-				page.should have_selector(".post-form")
+				expect(page).to have_selector(".post-form")
 			end
 
 			describe "create post" do
 				before do
 					visit new_post_path
-					fill_in "Title", 	with: "Awesome post"
-					fill_in "Body",		with: "This is an awesome post."
+					fill_in "post[title]", 	with: "Awesome post"
+					fill_in "post[body]",	with: "This is an awesome post."
 				end
 
 				it "should increment post count" do

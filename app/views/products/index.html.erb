@@ -1,5 +1,12 @@
-<% @products.each do |product| %>
-	<div class="product-list">
-		<%= render partial: "product", locals: {product: product} %>
+<% provide(:title, "The Shop") %>
+<section id="section-shop" class="section appear clearfix">
+	<div class="container">
+		<div class="row mar-bot20">
+			<ul class="product-list col-md-offset-1 col-md-10">	
+				<% @products.each do |product| %>
+					<%= render partial: "product", locals: {product: product} %>
+				<% end %>
+			</ul>
+		</div>
 	</div>
-<% end %>
+</section>

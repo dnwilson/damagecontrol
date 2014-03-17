@@ -1,0 +1,32 @@
+<% provide(:title, "My Orders") %>
+<section class="panel">
+    <div class="container">
+		<div class="row mar-bot40">
+			<div class="col-md-offset-2 col-md-8">
+				<%= render partial: "shared/settings_nav" %>
+				<div class="row">
+					<div class="order-list">
+						<% if current_user.orders.empty? %>
+							<p class="mar-top25">You have not completed any orders as yet.</p>
+						<% else %>
+							<div class="row mar-top25">
+								<div class="col-md-1">Order</div>
+								<div class="col-md-4">Customer Name</div>
+								<div class="col-md-3">Date</div>
+								<div class="col-md-4">Confirmation</div>
+							</div>
+							<% current_user.orders.each do |order| %>
+								<div class="row">
+									<div class="col-md-1"><%= order.id %></div>
+									<div class="col-md-4"><%= order.first_name %><%= order.last_name %></div>
+									<div class="col-md-3"><%= order.created_at.strftime("%m/%d/%Y") %></div>
+									<div class="col-md-4"><%= order.express_token %></div>
+								</div>
+							<% end %>
+						<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+</section>

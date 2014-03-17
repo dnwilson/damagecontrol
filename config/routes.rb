@@ -1,7 +1,10 @@
 Damagemiseh::Application.routes.draw do
 
+  resources :photos
+
   devise_for :users, :path =>'', :path_names => { :sign_in => 'login', :sign_out => 'logout', 
-                                                  :sign_up => 'register'}
+                                                  :sign_up => 'register'},
+                                 :controllers => {:registrations => "users/registrations"}
 
   devise_scope :user do
     get "login",    :to => "users/sessions#new"
@@ -9,23 +12,30 @@ Damagemiseh::Application.routes.draw do
     get "register", :to => "users/registrations#new"
     get "delete",   :to => "users/registrations#destroy"
     get "settings", :to => "users/registrations#edit"
+    get "settings/password", :to => "users/registrations#password"
+    patch "settings/password" => "users/registrations#settings_password"
+    put "settings/password" => "users/registrations#settings_password"
   end 
 
   root 'pages#home'
 
   resources :products
+  resources :inventories
   resources :line_items
   resources :carts
   resources :posts
   resources :orders do
     get 'express', on: :new
+    collection do
+      get :pending
+    end
   end
 
-  get "store", :to =>  "products#index"
+  get "shop", :to =>  "products#index"
 
   get "about",    to: "pages#about"
   get "contact",  to: "pages#contact"
-
+  get "panel",    to: "pages#panel"
   get "mycart", :controller => 'carts', :action => 'show', :id => 'current'
 
 

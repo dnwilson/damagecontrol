@@ -1,0 +1,129 @@
+<section class="panel">
+  <div class="container">
+    <div class="row mar-bot40">
+      <div class="col-md-offset-2 col-md-8">
+        <%= render partial: "shared/settings_nav" %>
+        <div class="row mar-top25">
+          <div class="user-info">
+            <div class="user-dets">
+              <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => "row mar-top25", :method => :put }) do |f| %>
+                <%= devise_error_messages! %>
+
+                <div class="billing-info col-md-12">
+                  <h4>Billing Info</h4>
+                  <div class="row">
+                    <div class="left-inner-addon col-md-6">
+                      <i class="fa fa-user"></i>
+                        <%= f.text_field :first_name, placeholder: "First Name"  %>
+                    </div>
+                    <div class="left-inner-addon col-md-6">
+                      <i class="fa fa-user"></i>
+                        <%= f.text_field :last_name, placeholder: "Last Name"  %>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="left-inner-addon col-md-6">
+                      <i class="fa fa-envelope"></i>
+                        <%= f.email_field :email, placeholder: "Email"  %>
+                    </div>
+
+                    <div class="left-inner-addon col-md-6">
+                      <i class="fa fa-phone"></i>
+                        <%= f.telephone_field :phone_number, placeholder: "Phone Number"  %>
+                    </div>
+                  </div>
+
+                  <div class="left-inner-addon">
+                    <i class="fa fa-home"></i>
+                    <%= f.text_field :billing_address1, placeholder: "Address"  %>
+                  </div>
+
+                  <div class="left-inner-addon">
+                    <i class="fa fa-building-o"></i>
+                      <%= f.text_field :billing_address2, placeholder: "Address 2"  %>
+                  </div>
+
+                  <div class="row">
+                    <div class="left-inner-addon col-md-6">
+                      <i class="fa fa-stop" style="color:#ddd;"></i>
+                        <%= f.text_field :billing_city, placeholder: "City"  %>
+                    </div>
+
+                    <div class="left-inner-addon col-md-6">
+                      <i class="fa fa-stop" style="color:#ddd;"></i>
+                        <%= f.text_field :billing_state, placeholder: "State/Province/Region"  %>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="left-inner-addon col-md-6">
+                      <i class="fa fa-stop" style="color:#ddd;"></i>
+                        <%= f.text_field :billing_zip, placeholder: "Zip/Postal Code"  %>
+                    </div>
+
+                    <div class="left-inner-addon col-md-6">
+                      <i class="fa fa-globe"></i>
+                        <%= f.country_select :billing_country %>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="shipping-info col-md-12">
+                  <div class="divider col-md-12 mar-top20 mar-bot40"></div>
+                  <h4>Shipping Info</h4>
+                  <div class="row">
+                    <div class="left-inner-addon col-md-6">
+                      <i class="fa fa-user"></i>
+                        <%= f.text_field :shipping_first_name, placeholder: "First Name"  %>
+                    </div>
+                    <div class="left-inner-addon col-md-6">
+                      <i class="fa fa-user"></i>
+                        <%= f.text_field :shipping_last_name, placeholder: "Last Name"  %>
+                    </div>
+                  </div>
+                  <div class="left-inner-addon">
+                    <i class="fa fa-home"></i>
+                    <%= f.text_field :shipping_address1, placeholder: "Address"  %>
+                  </div>
+
+                  <div class="left-inner-addon">
+                    <i class="fa fa-building-o"></i>
+                      <%= f.text_field :shipping_address2, placeholder: "Address 2"  %>
+                  </div>
+
+                  <div class="row">
+                    <div class="left-inner-addon col-md-6">
+                      <i class="fa fa-stop" style="color:#ddd;"></i>
+                        <%= f.text_field :shipping_city, placeholder: "City"  %>
+                    </div>
+
+                    <div class="left-inner-addon col-md-6">
+                      <i class="fa fa-stop" style="color:#ddd;"></i>
+                        <%= f.text_field :shipping_state, placeholder: "State/Province/Region"  %>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="left-inner-addon col-md-6">
+                      <i class="fa fa-stop" style="color:#ddd;"></i>
+                        <%= f.text_field :shipping_zip, placeholder: "Zip/Postal Code"  %>
+                    </div>
+
+                    <div class="left-inner-addon col-md-6">
+                      <i class="fa fa-globe"></i>
+                        <%= f.country_select :shipping_country %>
+                    </div>
+                  </div>
+                  <div class="divider col-md-12 mar-top20 mar-bot40"></div>
+                </div>
+
+                <div class="col-md-12"><%= f.submit "Update", class: "btn btn-black" %></div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

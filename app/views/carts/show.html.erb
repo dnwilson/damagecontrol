@@ -1,32 +1,52 @@
 <% provide(:title, 'Shopping Cart') %>
 
-<table id="line_items">
-  <tr>
-    <th>Image</th>
-    <th>Product</th>
-    <th>Qty</th>
-    <th class="price">Unit Price</th>
-    <th class="price">Full Price</th>
-  </tr>
-  <% for line_item in @cart.line_items %>
-    <tr class="<%= cycle :odd, :even %>">
-      <td><%= image_tag Product.find(line_item.product).image.url(:thumb) %></td>
-      <td><%=h line_item.product.name %></td>
-      <td class="qty"><%= line_item.quantity %></td>
-      <td class="price"><%= number_to_currency(line_item.unit_price) %></td>
-      <td class="price"><%= number_to_currency(line_item.full_price) %></td>
-    </tr>
-  <% end %>
-  <tr>
-    <td class="total price" colspan="4">
-      Total: <%= number_to_currency @cart.total_price %>
-    </td>
-  </tr>
-</table>
-
-<p>
-  <%= link_to "Continue Shopping", products_url %>
-</p>
-<p><%= link_to "Checkout", new_order_path, class: "btn btn-primary" %></p>
-
-<%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), express_new_order_path %>
+<section id="section-cart" class="section appear clearfix">
+  <div class="container">
+    <% if @cart.line_items.empty? %>
+    <div class="row mar-bot40">
+      <div class="col-md-offset-2 col-md-8">
+        <h2 class="align-center pad-bot30">Shopping Cart</h2>
+        <p style="text-align: center;">
+          There are currently no items in your cart. To add an item to your cart please visit the <%= link_to "shop", shop_path %>.
+        </p>
+      </div>
+    </div>
+    <% else %>
+      <div class="row mar-bot40">
+        <div class="col-md-offset-2 col-md-8">
+          <h2 class="align-center pad-bot30">Shopping Cart</h2>
+          <div class="cart-header row">
+            <div class="header-desc col-md-9">Product</div>
+            <div class="header-qty col-md-1">Qty</div>
+            <div class="header-price col-md-2">Price</div>
+          </div>
+          <div class="cart-items">
+            <% for line_item in @cart.line_items %>
+              <%= render partial: 'cart_item', locals: {line_item: line_item} %>
+            <% end %>
+          </div>
+          <div class="row">
+            <div class="col-md-10 total-text">
+              Total:
+            </div>
+            <div class="col-md-2 cart-total">
+              <%= number_to_currency @cart.total_price %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mar-top10">
+        <div class="col-md-offset-2 col-md-8">
+          <div class="cart-footer row">
+            <div class="col-md-11">
+              <%= link_to "Continue Shopping", products_url, class: "btn btn-primary" %>
+            </div>
+            <div class="col-md-1">
+              <%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), express_new_order_path, class: "pull-right" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>
