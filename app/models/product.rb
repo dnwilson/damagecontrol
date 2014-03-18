@@ -19,43 +19,6 @@ class Product < ActiveRecord::Base
 	validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 	# validates_attachment_file_name :image, :matches => [/png\Z/, /jpe?g\Z/]
 
-	# def dec_inventory(size_id)
-	# 	case size_id
-	# 	when 1
-	# 		self.inventory.update_attributes(xsmall: self.inventory.xsmall - 1)
-	# 	when 2
-	# 		self.inventory.update_attributes(small: self.inventory.small - 1)
-	# 	when  3
-	# 		self.inventory.update_attributes(medium: self.inventory.medium - 1)
-	# 	when  4
-	# 		self.inventory.update_attributes(large: self.inventory.large - 1)
-	# 	when  5
-	# 		self.inventory.update_attributes(xlarge: self.inventory.xlarge - 1)
-	# 	when  6
-	# 		self.inventory.update_attributes(xxlarge: self.inventory.xxlarge - 1)
-	# 	end
-	# end
-
-
-	# def inc_inventory(qty, size_id)
-	# 	case size_id
-	# 	when  1
-	# 		self.inventory.update_attributes(xsmall: self.inventory.xsmall + qty)
-	# 	when  2
-	# 		self.inventory.update_attributes(small: self.inventory.small + qty)
-	# 	when  3
-	# 		self.inventory.update_attributes(medium: self.inventory.medium + qty)
-	# 	when  4
-	# 		self.inventory.update_attributes(large: self.inventory.large + qty)
-	# 	when  5
-	# 		self.inventory.update_attributes(xlarge: self.inventory.xlarge + qty)
-	# 	when  6
-	# 		self.inventory.update_attributes(xxlarge: self.inventory.xxlarge + qty)
-	# 	end
-	# end
-
-	# Check availability of product. If product is downloadable it should be 
-	# available by default
 	def in_stock?
 		if self.downloadable?
 			true
@@ -91,6 +54,54 @@ class Product < ActiveRecord::Base
 			sizes << ['XXL', 6]
 		end
 		sizes
+	end
+
+	# Get the quantity available in a given size
+	def available_qty(size_id)
+		case size_id
+		when 1
+			if self.inventory.xsmall > 0
+				available = Array(1..self.inventory.xsmall)
+			else
+				available = []
+			end
+		when 2
+			if self.inventory.small > 0
+				available = Array(1..self.inventory.small)
+			else
+				available = []
+			end
+		when 3
+			if self.inventory.medium > 0
+				available = Array(1..self.inventory.medium)
+			else
+				available = []
+			end
+		when 4
+			if self.inventory.large > 0
+				available = Array(1..self.inventory.large)
+			else
+				available = []
+			end
+		when 5
+			if self.inventory.xlarge > 0
+				available = Array(1..self.inventory.xlarge)
+			end
+		when 6
+			if self.inventory.xxlarge > 0
+				available = Array(1..self.inventory.xxlarge)
+			else
+				available = []
+			end
+		end
+	end
+
+	def set_available_array
+		max_qty = self.inventory.small
+		i = 1
+		while i <= max_qty
+			
+		end
 	end
 
 	private

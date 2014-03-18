@@ -8,15 +8,7 @@ class OrdersController < ApplicationController
   		:ip => 				request.remote_ip,
   		:return_url =>         new_order_url,
 		  :cancel_return_url => 	products_url,
-  		:items =>
-			current_cart.line_items.each do |line_item|
-  			 [{
-	  			:name 			=> line_item.product.name, 
-	  			:description 	=> line_item.product.description,
-	  			:amount 		=> line_item.product.price
-  			}]
-			end
-  		
+  		:items => current_cart.line_items_hash
   	}
   	response = EXPRESS_GATEWAY.setup_purchase(current_cart.build_order.price_in_cents, 
 		options)

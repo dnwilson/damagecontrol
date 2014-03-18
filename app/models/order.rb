@@ -9,8 +9,9 @@ class Order < ActiveRecord::Base
 
 	def purchase
 		response = process_purchase
-		transactions.create!(action: "purchase", amount: price_in_cents, response: response, status: "Paid")
+		transactions.create!(action: "purchase", amount: price_in_cents, response: response)
 		cart.update_attribute(:purchased_at, Time.now) if response.success?
+		# transactions.update_attributes(status: "Paid") if response.success?
 		response.success?
 	end
 
@@ -86,4 +87,5 @@ class Order < ActiveRecord::Base
 			last_name: 					last_name 
 		)
 	end
+
 end

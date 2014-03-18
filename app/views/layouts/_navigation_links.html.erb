@@ -4,7 +4,7 @@
 	<li><a href="#section-works">Events</a></li>
 	<li><a href="#section-gallery">Gallery</a></li>
 	<li><a href="#section-contact">Contact</a></li>
-	<li><a href="#section-shop">Shop</a></li>
+	<li><a href="<%= shop_path %>">Shop</a></li>
 	<% if signed_in? %>
 		<% if current_user.admin? %>
 			<li><%= link_to "MyDC", panel_path %></li>
@@ -24,7 +24,7 @@
 	<li><a href="<%= root_path %>#section-works">Events</a></li>
 	<li><a href="<%= root_path %>#section-gallery">Gallery</a></li>
 	<li><a href="<%= root_path %>#section-contact">Contact</a></li>
-	<li class="<%= 'active' if current_page?(shop_path) || current_page?(orders_path) || current_page?(products_path) %>"><a href="<%= root_path %>#section-shop">Shop</a></li>
+	<li class="<%= 'active' if current_page?(shop_path) || current_page?(orders_path) || current_page?(products_path) %>"><a href="<%= shop_path %>">Shop</a></li>
 	<% if signed_in? %>
 		<% if current_user.admin? %>
 			<li class="<%= 'active' if current_page?(panel_path) %>"><%= link_to "MyDC", panel_path %></li>

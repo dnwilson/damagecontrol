@@ -13,7 +13,7 @@
   </div>
   <div class="item-qty mar-top30 col-md-1">
     <%= form_for(line_item, :html => {:id => "item-#{line_item.id}"}) do |f| %>
-      <%= f.select :quantity, [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6], [7, 7], [8, 8], [9, 9], [10, 10]], {selected: line_item.quantity}, {onchange: "$('#item-#{line_item.id}').submit();"} %>
+      <%= f.select :quantity, line_item.product.available_qty(line_item.size), {selected: line_item.quantity}, {onchange: "$('#item-#{line_item.id}').submit();"} %>
      <!--  <%= f.submit "Update" %> -->
     <% end %>
 

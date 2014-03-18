@@ -2,6 +2,8 @@
 
 Damage Control is a music group that is also involved in event planning and would like to bridge their music and event offerings along with apparel sales.
 
+###Known Issues
+- PayPal Item Description Page doesn't display correct quantity.
 
 ##Phase 1 (News)
 - [ ] Allow Only Admins to Post News
