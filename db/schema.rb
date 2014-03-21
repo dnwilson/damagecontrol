@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140320222016) do
+ActiveRecord::Schema.define(version: 20140321220506) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,14 @@ ActiveRecord::Schema.define(version: 20140320222016) do
     t.string   "express_token"
     t.string   "express_payer_id"
     t.string   "status"
+    t.string   "shipping_address2"
+    t.string   "shipping_city"
+    t.string   "shipping_state"
+    t.string   "shipping_zip"
+    t.string   "shipping_country"
+    t.decimal  "shipping_cost"
+    t.decimal  "subtotal"
+    t.decimal  "total"
   end
 
   add_index "orders", ["id", "user_id", "cart_id"], name: "index_orders_on_id_and_user_id_and_cart_id", unique: true, using: :btree

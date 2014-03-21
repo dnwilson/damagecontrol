@@ -2,6 +2,7 @@ class Order < ActiveRecord::Base
 	belongs_to :cart
 	belongs_to :user
 	has_many :transactions, class_name: "OrderTransaction"
+	# serialize :params
 
 	validate :validate_card, on: :create
 
@@ -24,10 +25,25 @@ class Order < ActiveRecord::Base
 	  self[:express_token] = token
 	  if new_record? && !token.blank?
 	    details = EXPRESS_GATEWAY.details_for(token)
+	    payment_details = details.params["PaymentDetails"]["ShipToAddress"]
 	    self.express_payer_id = details.payer_id
 	    self.first_name = details.params["first_name"]
 	    self.last_name = details.params["last_name"]
+	    self.shipping_address = payment_details["Street1"]
+	    self.shipping_address2 = payment_details["Street2"]
+	    self.shipping_city = payment_details["CityName"]
+	    self.shipping_state = payment_details["StateOrProvince"]
+	    self.shipping_zip = payment_details["PostalCode"]
+	    self.shipping_country = payment_details["CountryName"]
+	    self.shipping_cost = details.params["shipping_total"]
+	    self.subtotal = details.params["item_total"]
+	    self.total = details.params["order_total"]
 	  end
+	end
+
+	def order_items(token)
+		details = EXPRESS_GATEWAY.details_for(token)
+		details.params["PaymentDetails"]["PaymentDetailsItem"]
 	end
 
 	def pending
