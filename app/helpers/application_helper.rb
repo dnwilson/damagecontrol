@@ -15,6 +15,12 @@ module ApplicationHelper
 	  	"#{symbol}#{money}" 
 	end
 
+	def cents_helper(cents)
+		symbol = "$"
+		price_in_dollars = (cents/100)
+	  	"#{symbol}#{price_in_dollars}.00" 
+	end
+
 	
 	def fullname_helper(current_user)
 		if current_user.first_name.present?
@@ -63,5 +69,9 @@ module ApplicationHelper
 		when 'XXL'
 			6
 		end
+	end
+
+	def states_list
+		list = [['Alabama', 'Alabama'], ['Alaska', 'Alaska'], ['Arizona', 'Arizona'], ['Arkansas', 'Arkansas'], ['California', 'California'], ['Colorado', 'Colorado'], ['Connecticut', 'Connecticut'], ['Delaware', 'Delaware'], ['District Of Columbia', 'District Of Columbia'], ['Florida', 'Florida'], ['Georgia', 'Georgia'], ['Hawaii', 'Hawaii'], ['Idaho', 'Idaho'], ['Illinois', 'Illinois'], ['Indiana', 'Indiana'], ['Iowa', 'Iowa'], ['Kansas', 'Kansas'], ['Kentucky', 'Kentucky'], ['Louisiana', 'Louisiana'], ['Maine', 'Maine'], ['Maryland', 'Maryland'], ['Massachusetts', 'Massachusetts'], ['Michigan', 'Michigan'], ['Minnesota', 'Minnesota'], ['Mississippi', 'Mississippi'], ['Missouri', 'Missouri'], ['Montana', 'Montana'], ['Nebraska', 'Nebraska'], ['Nevada', 'Nevada'], ['New Hampshire', 'New Hampshire'], ['New Jersey', 'New Jersey'], ['New Mexico', 'New Mexico'], ['New York', 'New York'], ['North Carolina', 'North Carolina'], ['North Dakota', 'North Dakota'], ['Ohio', 'Ohio'], ['Oklahoma', 'Oklahoma'], ['Oregon', 'Oregon'], ['PALAU', 'PALAU'], ['Pennsylvania', 'Pennsylvania'], ['PUERTO RICO', 'PUERTO RICO'], ['Rhode Island', 'Rhode Island'], ['South Carolina', 'South Carolina'], ['South Dakota', 'South Dakota'], ['Tennessee', 'Tennessee'], ['Texas', 'Texas'], ['Utah', 'Utah'], ['Vermont', 'Vermont'], ['Virginia', 'Virginia'], ['Washington', 'Washington'], ['West Virginia', 'West Virginia'], ['Wisconsin', 'Wisconsin'], ['Wyoming', 'Wyoming'], ['Canada', 'Canada']]
 	end
 end

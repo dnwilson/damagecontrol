@@ -31,7 +31,10 @@ class LineItemsController < ApplicationController
 	def update
 		@line_item = LineItem.find(params[:id])
 		@line_item.update_attributes(cart: current_cart, quantity: params[:line_item][:quantity])
-		redirect_to mycart_path
+		respond_to do |format|
+			format.html{redirect_to mycart_path}
+			format.js
+		end
 	end
 
 	private

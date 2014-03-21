@@ -1413,7 +1413,8 @@ section.panel {
 	list-style: none;
 }
 
-.cart-total, .total-text, .item-price, .header-price{
+.cart-total, .total-text, .item-price, .header-price,
+.subtotal, .subtotal-text, .shipping-text, .shipping-cost{
 	text-align: right;
 }
 
@@ -1421,6 +1422,7 @@ section.panel {
 	font-weight: bold;
 	color: #222;
 }
+
 
 .item-qty, .header-qty{
 	text-align: center;

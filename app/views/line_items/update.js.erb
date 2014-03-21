@@ -1,1 +1,4 @@
-$(".cart-items").html("<%= escape_javascript(render 'cart_item') %>");
+$("#<%= @line_item.id %>").replaceWith("<%= escape_javascript(render partial: 'carts/cart_item', locals: {line_item: @line_item}) %>");
+$(".subtotal").html("<%= escape_javascript(number_to_currency @line_item.cart.total_price) %>");
+$(".shipping-cost").html("<%= escape_javascript(number_to_currency @line_item.cart.shipping_cost) %>");
+$(".cart-total").html("<%= escape_javascript(number_to_currency @line_item.cart.shipping_cost + @line_item.cart.total_price) %>");

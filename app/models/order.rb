@@ -88,4 +88,12 @@ class Order < ActiveRecord::Base
 		)
 	end
 
+	private
+		def remove_from_inventory
+			if self.last.transactions.last.params["PaymentInfo"]["PaymentStatus"] = "Completed"
+				cart.line_items.each do |line_item|
+					line_item.dec_inventory
+				end
+			end
+		end
 end

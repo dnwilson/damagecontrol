@@ -11,10 +11,31 @@ class Cart < ActiveRecord::Base
 		self.line_items.map do |line_item|
 	        {
 	          :name => Product.find(line_item.product_id).name,
-	          # :quantity => line_item.quantity,
+	          :quantity => line_item.quantity,
 	          :description => line_item.product.description,
-	          :amount => line_item.gross_price_in_cents
+	          :amount => line_item.product.in_cents
 	        }
 	    end
 	end
+
+	def shipping_cost
+		if shipping_state == 'New York'
+			0
+		elsif shipping_state == 'Canada'
+			10.00
+		else
+			6.00
+		end
+	end
+
+	def shipping_cost_in_cents
+		if shipping_state == 'New York'
+			0
+		elsif shipping_state == 'Canada'
+			1000
+		else
+			600
+		end
+	end
+
 end

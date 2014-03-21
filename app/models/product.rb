@@ -31,6 +31,10 @@ class Product < ActiveRecord::Base
 		end
 	end
 
+	def in_cents
+		(price*100).round
+	end
+
 
 	# Get the available sizes and set them to an array for select box
 	def available_sizes

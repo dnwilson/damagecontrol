@@ -1,0 +1,2 @@
+$('.shipping-info').html("<%= escape_javascript(render partial:'shipping_info', locals:{cart: @cart}) %>");
+$('.cart-total').html("<%= escape_javascript(number_to_currency @cart.shipping_cost + @cart.total_price) %>");

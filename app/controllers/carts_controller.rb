@@ -5,6 +5,15 @@ class CartsController < ApplicationController
 		@cart = current_cart
 	end
 
+	def update
+		@cart = current_cart
+		@cart.update_attributes!(shipping_state: params[:cart][:shipping_state])
+		respond_to do |format|
+			format.html{redirect_to mycart_path(@cart, @cart.shipping_state)}
+			format.js
+		end
+	end
+
 	private
 
 		def has_item?

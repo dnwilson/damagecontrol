@@ -25,24 +25,41 @@
               <%= render partial: 'cart_item', locals: {line_item: line_item} %>
             <% end %>
           </div>
-          <div class="row">
-            <div class="col-md-10 total-text">
-              Total:
+          <div class="row order-summary mar-top20">
+            <div class="col-md-7">
+              <div class="row">
+                <%= link_to "Continue Shopping", products_url, class: "btn btn-primary" %>
+              </div>
+              <div class="shipping row mar-top30">
+                <h4>Choose State:</h4>
+                <%= form_for(@cart, shipping_state: params[:shipping_state], remote: true, :html => {:id => "cart-#{@cart.id}"}) do |f| %>
+                  <%= f.select :shipping_state, options_for_select(states_list), {selected: @cart.shipping_state}, {onchange: "$('#cart-#{@cart.id}').submit();"} %>
+                  <% end %>
+              </div>
             </div>
-            <div class="col-md-2 cart-total">
-              <%= number_to_currency @cart.total_price %>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row mar-top10">
-        <div class="col-md-offset-2 col-md-8">
-          <div class="cart-footer row">
-            <div class="col-md-11">
-              <%= link_to "Continue Shopping", products_url, class: "btn btn-primary" %>
-            </div>
-            <div class="col-md-1">
-              <%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), express_new_order_path, class: "pull-right" %>
+            <div class="col-md-5">
+              <div class="row">
+                <div class="col-md-8 subtotal-text">
+                  Subtotal:
+                </div>
+                <div class="col-md-4 subtotal">
+                  <%= number_to_currency @cart.total_price %>
+                </div>
+              </div>
+              <div class="row mar-top20 shipping-info">
+                <%= render partial: 'shipping_info', locals: {cart: @cart} %>
+              </div>
+              <div class="row mar-top20">
+                <div class="col-md-8 total-text">
+                  Total:
+                </div>
+                <div class="col-md-4 cart-total">
+                  <%= number_to_currency @cart.shipping_cost + @cart.total_price %>
+                </div>
+              </div>
+              <div class="row mar-top20">
+                <%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), express_new_order_path, class: "pull-right" %>
+              </div>
             </div>
           </div>
         </div>

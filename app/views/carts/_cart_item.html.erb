@@ -12,7 +12,7 @@
     </div>
   </div>
   <div class="item-qty mar-top30 col-md-1">
-    <%= form_for(line_item, :html => {:id => "item-#{line_item.id}"}) do |f| %>
+    <%= form_for(line_item, remote: true, :html => {:id => "item-#{line_item.id}"}) do |f| %>
       <%= f.select :quantity, line_item.product.available_qty(line_item.size), {selected: line_item.quantity}, {onchange: "$('#item-#{line_item.id}').submit();"} %>
      <!--  <%= f.submit "Update" %> -->
     <% end %>

@@ -1,0 +1,6 @@
+<div class="col-md-8 shipping-text">
+  Shipping (<%= @cart.shipping_state %>):
+</div>
+<div class="col-md-4 shipping-cost">
+  <%= number_to_currency @cart.shipping_cost %>
+</div>

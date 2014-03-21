@@ -4,14 +4,36 @@ class OrdersController < ApplicationController
   force_ssl unless Rails.env.development?
 
   def express
-  	options = {
-  		:ip => 				request.remote_ip,
-  		:return_url =>         new_order_url,
-		  :cancel_return_url => 	products_url,
-  		:items => current_cart.line_items_hash
-  	}
-  	response = EXPRESS_GATEWAY.setup_purchase(current_cart.build_order.price_in_cents, 
-		options)
+
+  # 	options = {
+  # 		:ip => 				request.remote_ip,
+  # 		:return_url =>         new_order_url,
+		#   :cancel_return_url => 	products_url,
+  #     :subtotal => current_cart.build_order.price_in_cents,
+  #     :tax      => 20,
+  #     :shipping => 20,
+  #     :handling      => 20,
+  # 		:items => current_cart.line_items_hash
+  # 	}
+  #   total = current_cart.build_order.price_in_cents + options[:tax] + options[:shipping] + options[:handling]
+  # 	response = EXPRESS_GATEWAY.setup_purchase(total, 
+		# options)
+    tax = 0
+    shipping = current_cart.shipping_cost_in_cents
+    handling = 0
+    subtotal = current_cart.build_order.price_in_cents
+    total = current_cart.build_order.price_in_cents + tax + shipping + handling
+    response = EXPRESS_GATEWAY.setup_purchase(
+      total,
+      :ip =>        request.remote_ip,
+      :return_url =>         new_order_url,
+      :cancel_return_url =>   products_url,
+      :subtotal => current_cart.build_order.price_in_cents,
+      :tax      => tax,
+      :shipping => shipping,
+      :handling => 0,
+      :items => current_cart.line_items_hash
+    )
 	  redirect_to EXPRESS_GATEWAY.redirect_url_for(response.token)
   end
 
