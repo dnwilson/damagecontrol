@@ -20,7 +20,7 @@
 /db/seeds.rb
 
 # Ignore s3 info
-/config/intializers/asset_sync.rb
+/config/initializers/asset_sync.rb
 
 # Ignore certs config
 #/config/app_config.yml
