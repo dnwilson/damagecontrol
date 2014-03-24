@@ -11,7 +11,7 @@
 
 		<div class="row align-center mar-bot40">
 			<% @members.each do |member| %>
-				<div class="col-md-2">
+				<div class="col-md-2 mar-top40">
 					<div class="team-member">
 						<figure class="member-photo"><%= link_to image_tag(member.photo.url(:small)), fb_path(member.facebook) %></figure>
 						<div class="team-detail">

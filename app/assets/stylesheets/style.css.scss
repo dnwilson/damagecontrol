@@ -615,25 +615,28 @@ Members
 				width:100%;	
 		&:hover{
 			opacity: 0.8;
-			-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
-			-moz-transition: -moz-transform 0.3s, opacity 0.3s;
-			transition: transform 0.3s, opacity 0.3s;
+			width:100%;	
+			-webkit-transition: -webkit-transform 0.7s, opacity 0.7s;
+			-moz-transition: -moz-transform 0.7s, opacity 0.7s;
+			transition: transform 0.7s, opacity 0.7s;
 		}
 	}
 }
 
-.team-detail h4 {
-	font-weight: 700;
-	margin-bottom: 3px;
-	font-size: 16px;
-	a{
-		color: #222;
-		&:hover{
-			color: #777;
+.team-detail{ 
+	h4 {
+		font-weight: 700;
+		margin-bottom: 3px;
+		font-size: 16px;
+		a{
+			color: #222;
+			&:hover{
+				color: #777;
+			}
 		}
 	}
 	.member-title{
-		font-size: 11px;
+		font-size: 13px;
 	}
 }
 /*===========================
