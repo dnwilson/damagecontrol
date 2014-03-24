@@ -24,4 +24,5 @@
 
 # Ignore certs config
 #/config/app_config.yml
+/config/config/environments/production.rb
 .env
