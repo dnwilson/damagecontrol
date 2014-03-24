@@ -10,6 +10,7 @@ gem 'devise', '~> 3.2.2'
 gem 'paperclip', '~> 4.1'
 gem 'activemerchant'
 gem 'auto_html'
+gem 'asset_sync'
 
 # Use SCSS for stylesheets
 gem 'rails_layout'
