@@ -26,29 +26,6 @@
     </div>
 </section>
 
-<section id="section-shop" class="section appear clearfix">
-	<div class="container">
-		<div class="row mar-bot40">
-			<div class="col-md-offset-3 col-md-6">
-				<div class="section-header">
-					<h2 class="section-heading animated" data-animation="bounceInUp">The Shop</h2>
-					<p>Gear up on all the latest Damage Control content and attire.</p>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-md-12">
-			<div class="row">
-				<div class="products-items isotopeWrapper align-center clearfix">
-					<% @products.each do |product| %>
-						<%= render partial: "shared/product", locals: {product: product} %>
-					<% end %>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
 <script src="assets/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 <script src="assets/toucheffects.js"></script>
 <script src="assets/jquery.js"></script>

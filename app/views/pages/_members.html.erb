@@ -16,7 +16,7 @@
 						<figure class="member-photo"><%= link_to image_tag(member.photo.url(:small)), fb_path(member.facebook) %></figure>
 						<div class="team-detail">
 							<h4><%= link_to "#{member.name}", fb_path(member.facebook) %></h4>
-							<span><%= member.title %></span>
+							<span class="member-title"><%= member.title %></span>
 						</div>
 					</div>
 				</div>

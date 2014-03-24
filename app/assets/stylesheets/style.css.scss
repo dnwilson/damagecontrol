@@ -403,7 +403,7 @@ section.section {
 h1 a.navbar-brand {
 	font-size: 30px;
 	color: #fff;
-	font-weight: 900;
+	font-weight: 400;
 	text-shadow: none;
 	font-family: 'Great Vibes', cursive;
 }
@@ -625,11 +625,15 @@ Members
 .team-detail h4 {
 	font-weight: 700;
 	margin-bottom: 3px;
+	font-size: 16px;
 	a{
 		color: #222;
 		&:hover{
 			color: #777;
 		}
+	}
+	.member-title{
+		font-size: 11px;
 	}
 }
 /*===========================
