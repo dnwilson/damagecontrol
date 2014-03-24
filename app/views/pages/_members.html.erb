@@ -10,116 +10,17 @@
 		</div>
 
 		<div class="row align-center mar-bot40">
-			<div class="col-md-2">
-				<div class="team-member">
-					<figure class="member-photo"><img src="assets/team/member1.jpg" alt="" /></figure>
-					<div class="team-detail">
-						<h4>Fiyah Damage</h4>
-						<span>Founder, Artist</span>
+			<% @members.each do |member| %>
+				<div class="col-md-2">
+					<div class="team-member">
+						<figure class="member-photo"><%= link_to image_tag(member.photo.url(:small)), fb_path(member.facebook) %></figure>
+						<div class="team-detail">
+							<h4><%= link_to "#{member.name}", fb_path(member.facebook) %></h4>
+							<span><%= member.title %></span>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-md-2">
-				<div class="team-member">
-					<figure class="member-photo"><img src="assets/team/member2.jpg" alt="" /></figure>
-					<div class="team-detail">
-						<h4>War Professa</h4>
-						<span>Artist</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-2">
-				<div class="team-member">
-					<figure class="member-photo"><img src="assets/team/member3.jpg" alt="" /></figure>
-					<div class="team-detail">
-					<h4>Boyze</h4>
-						<span>Artist, Dark-Side</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-2">
-				<div class="team-member">
-					<figure class="member-photo"><img src="assets/team/member4.jpg" alt="" /></figure>
-					<div class="team-detail">
-					<h4>K-ron</h4>
-						<span>Artist, Dark-Side</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-2">
-				<div class="team-member">
-					<figure class="member-photo"><img src="assets/team/member5.jpg" alt="" /></figure>
-					<div class="team-detail">
-						<h4>Dappa Diesel</h4>
-						<span>Artist</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-2">
-				<div class="team-member">
-					<figure class="member-photo"><img src="assets/team/member6.jpg" alt="" /></figure>
-					<div class="team-detail">
-						<h4>Razar Damage</h4>
-						<span>Event Planner</span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row align-center mar-bot40">
-			<div class="col-md-2">
-				<div class="team-member">
-					<figure class="member-photo"><img src="assets/team/member7.jpg" alt="" /></figure>
-					<div class="team-detail">
-					<h4>Cardo Wicked</h4>
-						<span>Dancer, Dark-Side</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-2">
-				<div class="team-member">
-					<figure class="member-photo"><img src="assets/team/member8.jpg" alt="" /></figure>
-					<div class="team-detail">
-					<h4>Jigga Damage</h4>
-						<span>Event Planner</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-2">
-				<div class="team-member">
-					<figure class="member-photo"><img src="assets/team/member9.jpg" alt="" /></figure>
-					<div class="team-detail">
-						<h4>Raydawg</h4>
-						<span></span>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-2">
-				<div class="team-member">
-					<figure class="member-photo"><img src="assets/team/member10.jpg" alt="" /></figure>
-					<div class="team-detail">
-						<h4>Repo</h4>
-						<span></span>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-2">
-				<div class="team-member">
-					<figure class="member-photo"><img src="assets/team/member11.jpg" alt="" /></figure>
-					<div class="team-detail">
-					<h4>Terpi</h4>
-						<span>Dancer, Dark-Side</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-2">
-				<div class="team-member">
-					<figure class="member-photo"><img src="assets/team/member12.jpg" alt="" /></figure>
-					<div class="team-detail">
-					<h4>TJ</h4>
-						<span>Dancer, Dark-Side</span>
-					</div>
-				</div>
-			</div>
+			<% end %>
 		</div>
 	</div>
 </section>

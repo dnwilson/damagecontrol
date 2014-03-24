@@ -4,11 +4,13 @@ class PagesController < ApplicationController
 
 	def home
 		@products = Product.all
+		@members = Member.all
 	end
 
 	def panel
 		@products = Product.all 
 		@inventories = Inventory.all
+		@members = Member.all
 	end
 
 	def about

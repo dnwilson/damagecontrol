@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321220506) do
+ActiveRecord::Schema.define(version: 20140324200240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,27 @@ ActiveRecord::Schema.define(version: 20140321220506) do
   end
 
   add_index "line_items", ["id", "product_id", "cart_id"], name: "index_line_items_on_id_and_product_id_and_cart_id", unique: true, using: :btree
+
+  create_table "members", force: true do |t|
+    t.string   "name"
+    t.boolean  "artist",             default: false
+    t.string   "title"
+    t.text     "bio"
+    t.string   "facebook"
+    t.string   "twitter"
+    t.string   "instagram"
+    t.string   "soundcloud"
+    t.string   "reverbnation"
+    t.string   "youtube"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
+
+  add_index "members", ["id"], name: "index_members_on_id", unique: true, using: :btree
 
   create_table "order_transactions", force: true do |t|
     t.integer  "order_id"

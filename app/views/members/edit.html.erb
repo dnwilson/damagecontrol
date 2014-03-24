@@ -1,0 +1,21 @@
+<section class="section appear clearfix" id="members">
+	<div class="container">   
+		<div class="row mar-bot40">
+			<%= form_for(@member) do |f| %>
+				<%= render 'shared/error_messages', object: f.object %>
+				<%= f.file_field :photo %>
+				<%= f.text_field :name, placeholder: "Name" %>
+				<%= f.text_field :title, placeholder: "Title" %>
+				<%= f.text_area :bio, placeholder: "Place bio info here..." %>
+				<%= f.text_field :name, placeholder: "Name" %>
+				<%= f.text_field :facebook, placeholder: "Facebook" %>
+				<%= f.text_field :twitter, placeholder: "Twitter" %>
+				<%= f.text_field :instagram, placeholder: "Instagram" %>
+				<%= f.text_field :youtube, placeholder: "Youtube" %>
+				<%= f.text_field :soundcloud, placeholder: "Soundcloud" %>
+				<%= f.text_field :reverbnation, placeholder: "ReverbNation" %>
+				<%= f.submit "Update", class: "btn btn-primary" %>
+			<% end %>
+		</div>
+	</div>
+</section>

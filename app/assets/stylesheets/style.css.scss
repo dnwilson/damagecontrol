@@ -608,21 +608,30 @@ Members
 		-moz-border-radius:50%;
 			border-radius:50%;	
 	margin: 0 0 20px 0;
-}
-.member-photo img {
-	-webkit-border-radius:50%;
-		-moz-border-radius:50%;
-			border-radius:50%;
-			width:100%;	
+	img {
+		-webkit-border-radius:50%;
+			-moz-border-radius:50%;
+				border-radius:50%;
+				width:100%;	
+		&:hover{
+			opacity: 0.8;
+			-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+			-moz-transition: -moz-transform 0.3s, opacity 0.3s;
+			transition: transform 0.3s, opacity 0.3s;
+		}
+	}
 }
 
 .team-detail h4 {
 	font-weight: 700;
 	margin-bottom: 3px;
+	a{
+		color: #222;
+		&:hover{
+			color: #777;
+		}
+	}
 }
-
-
-
 /*===========================
   events
 ============================ */

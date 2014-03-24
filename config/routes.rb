@@ -20,6 +20,7 @@ Damagemiseh::Application.routes.draw do
   root 'pages#home'
 
   resources :products
+  resources :members
   resources :inventories
   resources :line_items
   resources :carts

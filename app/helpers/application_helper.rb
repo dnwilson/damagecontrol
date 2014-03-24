@@ -30,6 +30,10 @@ module ApplicationHelper
 		end
 	end
 
+	def fb_path(name)
+		"http://facebook.com/#{name}"
+	end
+
 	def available_sizes(id)
 		@item = Product.find(id)
 		@array =[]
