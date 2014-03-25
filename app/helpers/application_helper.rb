@@ -58,6 +58,16 @@ module ApplicationHelper
 		@array
 	end
 
+	def authorized?
+		if signed_in?
+			if current_user.admin?
+				true
+			end
+		else
+			false
+		end
+	end
+
 	def set_size(selected)
 		case selected
 		when 1

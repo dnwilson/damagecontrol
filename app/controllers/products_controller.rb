@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
-	before_filter :authenticate_user!, only: [:new, :create, :destroy]
-	before_filter :verify_is_admin, only: [:new, :create, :destroy]
+	before_filter :authenticate_user!, only: [:new, :create, :destroy, :edit, :update]
+	before_filter :verify_is_admin, only: [:new, :create, :destroy, :edit, :update]
 
 	def new
 		@product = Product.new
@@ -24,6 +24,25 @@ class ProductsController < ApplicationController
 				format.js   { render 'products/new'}
 			end
 		end
+	end
+
+	def edit
+		@product = Product.find(params[:id])
+	end
+
+	def update
+		@product = Product.find(params[:id])
+		respond_to do |format|
+         if @product.update_attributes(product_params)
+            format.html {redirect_to shop_path}
+            format.json {head :no_content}
+            format.js
+         else
+            format.html {render action: "edit"}
+            format.json {render json: @product.errors, status: :unprocessable_entity}
+            format.js {render'products/edit'}
+         end
+      end
 	end
 
 	def index

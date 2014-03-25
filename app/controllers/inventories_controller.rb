@@ -1,6 +1,6 @@
 class InventoriesController < ApplicationController
-	before_filter :authenticate_user!, only: [:update]
-	before_filter :verify_is_admin, only: [:update]
+	before_filter :authenticate_user!, only: [:edit, :update]
+	before_filter :verify_is_admin, only: [:edit, :update]
 
 	def update
 		@inventory = Inventory.find(params[:id])
