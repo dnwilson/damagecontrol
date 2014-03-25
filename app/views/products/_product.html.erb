@@ -29,7 +29,7 @@
 		<div class="col-md-7 product-info mar-top10">
 			<h2><%= product.name %></h2>
 			<p><%= product.description %></p>
-			<div class="product-size"><%= select_tag :size, options_for_select(product.available_sizes, 'M') %></div>
+			<% if authorized? %><%= link_to "Edit this Product", edit_product_path(product) %><% end %>
 		</div>
 		<div class="col-md-2">
 			<h3 class="mar-top20 mar-bot25 align-center">
