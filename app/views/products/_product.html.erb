@@ -1,33 +1,40 @@
-<li class="col-md-12 col-sm-12 col-xs-12 product-<%= product.id %>">
-	<div class="col-md-3 col-sm-3 col-xs-3 product-<%= product.id %>-image">
-		<%= image_tag product.image.url(:thumb) %>
-	</div>
-	<div class="col-md-7 col-sm-7 col-xs-7 product-<%= product.id %>-info">
-		<div class="product-<%= product.id %>-name">
-			<%= product.name %>
-		</div>
-
-		<div class="product-<%= product.id %>-desc">
-			<%= product.description %>
-		</div>
-
-		<div class="product-<%= product.id %>-price">
-			<%= product.price %>
-		</div>
-		<% if product.in_stock? %>
-			<%= form_tag(line_items_path, :method => :post) do %>
-				<%= select_tag :size, options_for_select(product.available_sizes, 'M') %>
-				<%= hidden_field_tag :product_id, product.id %>
-				<%= submit_tag("Add to Cart", class: "btn btn-primary", :product_id => product.id)%>
-			<% end %>
-		<% else %>
-			Out of Stock
+<li class="row product mar-bot30">
+	<% if product.in_stock? %>
+		<%= form_tag(line_items_path, :method => :post) do %>
+			<%= hidden_field_tag :product_id, product.id %>
+			<div class="col-md-3 product-image">
+				<%= image_tag product.image.url(:thumb) %>
+			</div>
+			<div class="col-md-7 product-info mar-top10">
+				<h2><%= product.name %></h2>
+				<p><%= product.description %></p>
+				<div class="product-size">
+					<%= select_tag :size, options_for_select(product.available_sizes, 'M') %>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<h3 class="mar-top20 mar-bot25 align-center">
+					<%= number_to_currency product.price %>
+				</h3>
+				<div class="product-btn align-center">
+					<%= submit_tag("Add to Cart", class: "btn btn-primary", :product_id => product.id)%>
+				</div>
+			</div>
 		<% end %>
-
-	</div>
-	<div class="col-md-2 col-sm-2 col-xs-2 product-<%= product.id %>-buy">
-		<div class="actions">
-      	<%= button_to "Add to Cart", line_items_path(:product_id => product, :size => @size), :method => :post, class: "btn btn-primary" %>
-    </div>
-	</div>
+	<% else %>
+		<div class="col-md-3 product-image">
+			<%= image_tag product.image.url(:thumb) %>
+		</div>
+		<div class="col-md-7 product-info mar-top10">
+			<h2><%= product.name %></h2>
+			<p><%= product.description %></p>
+			<div class="product-size"><%= select_tag :size, options_for_select(product.available_sizes, 'M') %></div>
+		</div>
+		<div class="col-md-2">
+			<h3 class="mar-top20 mar-bot25 align-center">
+				<%= number_to_currency product.price %>
+			</h3>
+			<span class="red align-center">Out of Stock</span>
+		</div>
+	<% end %>
 </li>

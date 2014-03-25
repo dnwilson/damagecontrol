@@ -60,18 +60,18 @@ module ApplicationHelper
 
 	def set_size(selected)
 		case selected
-		when 'XS'
-			1
-		when 'S'
-			2
-		when 'M'
-			3
-		when 'L'
-			4
-		when 'XL'
-			5
-		when 'XXL'
-			6
+		when 1
+			'XS'
+		when 2
+			'S'
+		when 3
+			'M'
+		when 4
+			'L'
+		when 5
+			'XL'
+		when 6
+			'XXL'
 		end
 	end
 

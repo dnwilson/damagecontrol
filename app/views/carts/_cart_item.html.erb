@@ -6,7 +6,7 @@
       </div>
       <div class="item-det mar-top30">
         <h4><%=h line_item.product.name %></h4>
-        <p><%=h line_item.size %></p>
+        <p><%=h set_size(line_item.size) %></p>
         <%=h button_to "REMOVE", line_item_path(line_item.product.id), method: :delete, class: "btn btn-primary" %>
       </div>
     </div>
@@ -14,7 +14,6 @@
   <div class="item-qty mar-top30 col-md-1">
     <%= form_for(line_item, remote: true, :html => {:id => "item-#{line_item.id}"}) do |f| %>
       <%= f.select :quantity, line_item.product.available_qty(line_item.size), {selected: line_item.quantity}, {onchange: "$('#item-#{line_item.id}').submit();"} %>
-     <!--  <%= f.submit "Update" %> -->
     <% end %>
 
   </div>
