@@ -64,9 +64,9 @@ describe ProductsController do
 					expect(page).to have_css('img')
 				end
 
-				it "should redirect to index path" do
+				it "should redirect to panel path" do
 					click_button "Create Product"
-					expect(page).to have_selector('.product-list')
+					expect(page).to have_selector('.inventory-form')
 				end
 			end
 		end

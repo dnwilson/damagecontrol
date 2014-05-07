@@ -1,0 +1,20 @@
+<%= form_for(@gallery, :validate => true, :html => {:class => 'gallery-form', :multipart => true, :autocomplete => :off}) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<%= f.hidden_field :event_id %>
+	<div>
+		<%= f.text_field :name, placeholder: "Gallery Name"  %>
+	</div>
+
+	<div>
+		<%= f.text_area :description, placeholder: "Description of gallery"  %>
+	</div>
+
+	<div>
+    	<%= file_field_tag "images[]", type: :file, multiple: true %>
+	</div>
+
+	<div>
+		<%= f.submit "Create Gallery", class: "btn btn-black" %>
+	</div>
+
+<% end %>

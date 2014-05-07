@@ -1,0 +1,16 @@
+<section class="panel">
+	<div class="container">
+		<div class="row mar-bot40">
+			<div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">
+				<div class="row">
+					<h2 class="col-md-11 col-sm-11">Edit Event</h2>
+					<div class="delete col-md-1 col-sm-1">
+						<%= link_to @event, data: {confirm: "Are you sure?"}, method: :delete do %>
+							<i class="fa fa-trash-o"></i>
+						<% end %>
+					</div>
+				</div>
+				<%= render partial: "events_form" %>
+		</div>
+	</div>
+</section>

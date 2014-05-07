@@ -1,11 +1,18 @@
 class Photo < ActiveRecord::Base
 
-	belongs_to :imageable, polymorphic: true
+	belongs_to :gallery
+	belongs_to :user
 
-	has_attached_file :image, :styles => {large: "2048x20480>", med: "1024x1024>", thumb: "150x150#"},
-	:default_url => "/assets/no-image.png", 
-	:url => "/assets/photo/:id/:basename_:style.:extension",
-	:path => ":rails_root/app/assets/images/photo/:id/:basename_:style.:extension"
+	mount_uploader :image, ImageUploader
 
-	validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+	validates_presence_of :gallery_id
+	# validates_presence_of :name
+	validates_presence_of :image
+
+	before_create :default_name
+
+	def default_name
+		# self.name ||= File.basename(image.filename, '.*').titleize if image
+		self.name = "IMG#{self.gallery_id}#{self.id}" if image
+	end
 end

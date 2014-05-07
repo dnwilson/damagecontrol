@@ -1,0 +1,16 @@
+<section class="panel">
+	<div class="container">
+		<div class="row mar-bot40">
+			<div class="col-md-2 col-sm-2"></div>
+			<div class="col-md-8 col-sm-8">
+				<% @videos.each do |video| %>
+					<div>
+						<%= link_to image_tag(video.image), video.url %>
+					</div>
+				<% end %>
+				
+			</div>
+			<div class="col-md-2 col-sm-2"></div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,9 @@
+<%= form_for(@video) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<%= f.text_field :name, placeholder: "Name" %>
+	<%= f.date_field :date %>
+	<%= f.text_field :url, placeholder: "Video url" %>
+	<%= f.hidden_field :event_id %>
+	<%= f.hidden_field :image %>
+	<%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %>

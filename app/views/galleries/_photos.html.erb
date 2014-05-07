@@ -1,0 +1,12 @@
+<div id="photos" class="row">
+	<% @gallery.photos.each do |photo| %>
+		<%= render partial: 'shared/photo', locals: {photo: photo} %>
+	<% end %>
+</div>
+
+<script>
+	$(document).ready(function(){
+		//Examples of how to assign the Colorbox event to elements
+		$(".group1").colorbox({rel:'group1', maxHeight:'90%'});
+	});
+</script>

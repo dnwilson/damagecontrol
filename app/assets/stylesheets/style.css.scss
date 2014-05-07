@@ -679,7 +679,7 @@ nav#filter a {
 }
 
 
-.events-items article img {width:100%;} 
+.events-items article img {width:100%;height:100%;} 
 
 .events-item {
 	display: block;
@@ -709,10 +709,14 @@ nav#filter a {
 
 
 .events-item:hover .events-desc {
-	padding-top: 20%;
+	padding-top: 30%;
 	height: 100%;
     transition: all 200ms ease-in-out 0s;
 	opacity: 1;
+}
+
+.isotope{
+	height: 293px !important;
 }
 
 .events-item .events-desc a {
@@ -1216,6 +1220,7 @@ section.panel {
 			height: 40px;
 			border: 2px solid #ddd;
 			margin-bottom: 25px;
+			padding: 5px;
 		}
 		select#product_product_category_id{
 			width: 100%;
@@ -1264,8 +1269,10 @@ section.panel {
 		color: #222;
 		padding-left: 10px;
 	}
-	input{
+	input[type="text"]{
 		text-align: center;
+		width: 40px !important;
+		height: 40px;
 	}
 }
 .inventory-header{
@@ -1371,6 +1378,7 @@ section.panel {
 			border: 2px solid #ddd;
 			margin-bottom: 25px;
 			width: 100%;
+			height: 40px;
 		}
 		i{
 			position: absolute;
@@ -1513,4 +1521,147 @@ section#order{
 		font-weight: bold;
 	}
 
+}
+
+/*===========================
+  --- Gallery section ----
+=========================== */
+.dropdown, .delete{
+	line-height: 35px;
+	text-align: right;
+}
+.open ul.dropdown-menu{
+	right: 15px;
+	left: auto;
+	max-width: 80px;
+	min-width: 30px;
+	text-align: right;
+}
+#photos{
+	.photo-thumb{
+		img{
+			max-width: 100px;
+			&:hover{
+				opacity: 0.7;
+			}
+		}
+		.delete{
+			margin-top: 5px;
+			text-align: center;
+		}
+	}
+
+	// .delete-img{
+	// 	top: 0;
+	// 	width: 100%;
+	// 	text-align: center;
+	// 	line-height: 100px;
+	// 	position: absolute;
+	// 	display: none;
+	// 	a{
+	// 		color: #cc9900;
+	// 		background-color: white;
+	// 		padding: 5px 10px;
+	// 		border-radius: 3px;
+	// 		moz-border-radius: 3px;
+	// 		&:hover{
+	// 			color: #333;
+	// 		}
+	// 	}
+	// }
+}
+
+.new_photo{
+	border: 2px solid #ddd;
+	margin: 15px;
+	padding: 10px;
+}
+
+.cboxPhoto{
+	max-height: 600px;
+}
+
+.upload {
+  border-top: solid 1px #CCC;
+  width: 400px;
+  padding-top: 10px;
+  margin-top: 10px;
+
+  .progress {
+    margin-top: 8px;
+    border: solid 1px #555;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    .bar {
+      height: 10px;
+      background: #3EC144;
+    }
+  }
+}
+
+/*===========================
+  --- Event section ----
+=========================== */
+.event-main{
+	.event-desc{
+		img{
+			max-width: 100%;
+		}
+	}
+	.event-sidebar{
+		.club-name{
+			font-size: 20px;
+			line-height: 26px;
+			font-weight: bold;
+		}
+		.club-address{
+			margin-top: 5px;
+			font-size: 14px;
+			line-height: 18px;
+		}
+	}
+	.event-details{
+		p{
+			font-size: 16px;
+			line-height: 22px;
+		}
+	}
+}
+.event-date{
+	max-width: 100px;
+	.date-container{
+		background-color: #ffcc00;
+		hr{
+			margin: 5px 0;
+		}
+	}
+	.day, .month{
+		font-size: 16px;
+		text-transform: uppercase;
+	}
+	.date{
+		padding: 5px 0 10px 0;
+		font-size: 30px;
+		font-weight: bold;
+	}
+}
+
+.events-item{
+	width: 293px;
+	img{
+		width: 293px;
+	}
+}
+
+.gallery #photos .photo-thumb img{
+	max-width: 100%;
+}
+
+.video-thumb img{
+	width: 100%;
+}
+
+input[type="file"]{
+	height: 50px;
+	line-height: 30px;	
 }

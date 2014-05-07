@@ -9,5 +9,12 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
+ *= require isotope
+ *= require fancybox/jquery.fancybox
+ *= require bootstrap
+ *= require bootstrap-theme
+ *= require style
+ *= require default
+ *= require jquery.colorbox-example3
+ * require_tree .
  */

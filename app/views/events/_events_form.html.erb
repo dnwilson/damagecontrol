@@ -1,0 +1,27 @@
+<%= form_for(@event) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<%= f.text_field :name, placeholder: "Event name" %>
+	<div class="row">
+		<div class="col-md-6 col-sm-6">
+			<%= f.date_field :date %>
+		</div>
+		<div class="col-md-6 col-sm-6">
+			<%= f.file_field :flyer %>
+		</div>
+	</div>
+	<%= f.text_area :description, placeholder: "Describe event..." %>
+	<%= f.text_field :venue, placeholder: "Venue" %>
+	<%= f.text_field :address, placeholder: "Address" %>
+	<div class="row">
+		<div class="col-md-4 col-xs-4">
+			<%= f.text_field :city, placeholder: "City" %>
+		</div>
+		<div class="col-md-4 col-xs-4">
+			<%= f.text_field :state, placeholder: "State" %>
+		</div>
+		<div class="col-md-4 col-xs-4">
+			<%= f.text_field :zipcode, placeholder: "Zip" %>
+		</div>
+	</div>
+	<%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %>

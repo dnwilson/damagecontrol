@@ -1,0 +1,44 @@
+<section class="panel">
+	<div class="container">
+		<div class="row mar-bot40">
+			<div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">
+				<div class="row">
+					<h2 class="col-md-11 col-sm-11">Edit Gallery</h2>
+					<div class="delete col-md-1 col-sm-1">
+						<%= link_to @gallery, data: {confirm: "Are you sure?"}, method: :delete do %>
+							<i class="fa fa-trash-o"></i>
+						<% end %>
+					</div>
+				</div>
+				<%= form_for(@gallery, :validate => true, :html => {:class => 'gallery-form', :multipart => true, :autocomplete => :off}) do |f| %>
+					<%= render 'shared/error_messages', object: f.object %>
+					
+					<div>
+						<%= f.text_field :name, placeholder: "Gallery Name"  %>
+					</div>
+
+					<div>
+						<%= f.text_area :description, placeholder: "Description of gallery"  %>
+					</div>
+
+					<% if !@gallery.photos.empty? %>
+						<div id="photos" class="row">
+							<% @gallery.photos.each do |photo| %>
+								<%= render partial: 'shared/photo', locals: {photo: photo} %>
+							<% end %>
+						</div>
+					<% end %>
+
+					<div>
+				    	<%= file_field_tag "images[]", type: :file, multiple: true %>
+					</div>
+
+					<div>
+						<%= f.submit "Update", class: "btn btn-black" %>
+					</div>
+
+				<% end %>
+			</div>
+		</div>
+	</div>
+</section>

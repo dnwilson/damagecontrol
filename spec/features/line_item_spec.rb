@@ -33,21 +33,21 @@ describe LineItemsController do
 			visit shop_path
 		end
 
-		it "should not add item to cart" do
-			first(".product-list > li").click_button("Add to Cart")
-			expect(page).to have_content("Login")
-			expect(page).to have_content("Added")
-			expect(page).to have_content("to cart.")
-		end
+		# it "should not add item to cart" do
+		# 	first(".product-list > li").click_button("Add to Cart")
+		# 	expect(page).to have_content("Login")
+		# 	expect(page).to have_content("Added")
+		# 	expect(page).to have_content("to cart.")
+		# end
 
-		it "should increase quantity if item is already in cart" do
-			first(".product-list > li").click_button("Add to Cart")
-			visit shop_path
-			first(".product-list > li").click_button("Add to Cart")
-			expect(page).to have_selector('.qty', text: "2")
-			expect(page).to have_content("Updated")
-			expect(page).to have_content("quantity in cart.")
-		end
+		# it "should increase quantity if item is already in cart" do
+		# 	first(".product-list > li").click_button("Add to Cart")
+		# 	visit shop_path
+		# 	first(".product-list > li").click_button("Add to Cart")
+		# 	expect(page).to have_selector('.qty', text: "2")
+		# 	expect(page).to have_content("Updated")
+		# 	expect(page).to have_content("quantity in cart.")
+		# end
 
 	end
 

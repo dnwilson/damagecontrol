@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140324200240) do
+ActiveRecord::Schema.define(version: 20140505235217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,36 @@ ActiveRecord::Schema.define(version: 20140324200240) do
     t.datetime "updated_at"
     t.string   "shipping_state"
   end
+
+  create_table "events", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.date     "date"
+    t.string   "flyer"
+    t.string   "venue"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "description_html"
+  end
+
+  create_table "galleries", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "preview_pic"
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "description_html"
+  end
+
+  add_index "galleries", ["id", "event_id"], name: "index_galleries_on_id_and_event_id", using: :btree
+  add_index "galleries", ["id", "user_id", "event_id"], name: "index_galleries_on_id_and_user_id_and_event_id", using: :btree
+  add_index "galleries", ["id", "user_id"], name: "index_galleries_on_id_and_user_id", using: :btree
 
   create_table "inventories", force: true do |t|
     t.integer  "product_id"
@@ -121,18 +151,15 @@ ActiveRecord::Schema.define(version: 20140324200240) do
   end
 
   create_table "photos", force: true do |t|
-    t.string   "desc"
-    t.integer  "imageable_id"
-    t.string   "imageable_type"
+    t.string   "name"
+    t.integer  "gallery_id"
+    t.integer  "user_id"
+    t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
   end
 
-  add_index "photos", ["imageable_id", "imageable_type"], name: "index_photos_on_imageable_id_and_imageable_type", using: :btree
+  add_index "photos", ["id", "gallery_id"], name: "index_photos_on_id_and_gallery_id", using: :btree
 
   create_table "posts", force: true do |t|
     t.string   "title"
@@ -207,5 +234,17 @@ ActiveRecord::Schema.define(version: 20140324200240) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "videos", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "event_id"
+    t.date     "date"
+    t.string   "image"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "description_html"
+  end
 
 end

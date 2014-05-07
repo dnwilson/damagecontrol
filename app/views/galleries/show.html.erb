@@ -1,0 +1,19 @@
+<section class="panel">
+	<div class="container">
+		<div class="row mar-bot40">
+			<div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">
+				<%= render partial: "admin_options" %>
+				<% if @gallery.photos.empty? %>
+					<%= render partial: "photo_form" %>
+				<% else %>
+					<%= render partial: "photos" %>
+					<% if signed_in? %>
+						<div class="row">
+							<%= render partial: "photo_form" %>
+						</div>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</section>

@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap.min
+//= require jquery-fileupload/basic
+//= require jquery-fileupload/vendor/tmpl
+//= require jquery.colorbox
 //= require turbolinks
 //= require_tree .

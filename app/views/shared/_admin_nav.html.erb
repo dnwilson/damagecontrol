@@ -5,8 +5,8 @@
 <div class="settings-nav row">
 	<ul class="nav nav-pills nav-justified">
 		<li class="<%= 'active' if current_page?(new_product_path) %>"><%= link_to "Add New Product", new_product_path %></li>
-		<li class="<%= 'active' if current_page?(new_post_path) %>"><%= link_to "Add New Post", new_post_path %>
+		<li class="<%= 'active' if current_page?(new_post_path) %>"><%= link_to "Add New Post", new_post_path %></li>
+		<li class="<%= 'active' if current_page?(new_gallery_path) %>"><%= link_to 'New Gallery', new_gallery_path %></li>
 		<li class="<%= 'active' if current_page?(pending_orders_path) %>"><%= link_to 'Pending Orders', pending_orders_path %></li>
-		<li></li>
 	</ul>
 </div>

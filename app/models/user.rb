@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
 
   has_many :posts
   has_many :orders
+  has_many :galleries, dependent: :destroy
+  has_many :photos, dependent: :destroy
 end

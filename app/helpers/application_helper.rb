@@ -58,6 +58,7 @@ module ApplicationHelper
 		@array
 	end
 
+
 	def authorized?
 		if signed_in?
 			if current_user.admin?
@@ -85,7 +86,26 @@ module ApplicationHelper
 		end
 	end
 
+	def season(event)
+		item = event.date
+		day_hash = item.month * 100 + item.day
+		case day_hash
+			when 101..401 then "winter"
+			when 401..630 then "spring"
+			when 701..930 then "summer"
+			when 1001..1231 then "fall"
+		end
+	end
+
 	def states_list
 		list = [['Alabama', 'Alabama'], ['Alaska', 'Alaska'], ['Arizona', 'Arizona'], ['Arkansas', 'Arkansas'], ['California', 'California'], ['Colorado', 'Colorado'], ['Connecticut', 'Connecticut'], ['Delaware', 'Delaware'], ['District Of Columbia', 'District Of Columbia'], ['Florida', 'Florida'], ['Georgia', 'Georgia'], ['Hawaii', 'Hawaii'], ['Idaho', 'Idaho'], ['Illinois', 'Illinois'], ['Indiana', 'Indiana'], ['Iowa', 'Iowa'], ['Kansas', 'Kansas'], ['Kentucky', 'Kentucky'], ['Louisiana', 'Louisiana'], ['Maine', 'Maine'], ['Maryland', 'Maryland'], ['Massachusetts', 'Massachusetts'], ['Michigan', 'Michigan'], ['Minnesota', 'Minnesota'], ['Mississippi', 'Mississippi'], ['Missouri', 'Missouri'], ['Montana', 'Montana'], ['Nebraska', 'Nebraska'], ['Nevada', 'Nevada'], ['New Hampshire', 'New Hampshire'], ['New Jersey', 'New Jersey'], ['New Mexico', 'New Mexico'], ['New York', 'New York'], ['North Carolina', 'North Carolina'], ['North Dakota', 'North Dakota'], ['Ohio', 'Ohio'], ['Oklahoma', 'Oklahoma'], ['Oregon', 'Oregon'], ['PALAU', 'PALAU'], ['Pennsylvania', 'Pennsylvania'], ['PUERTO RICO', 'PUERTO RICO'], ['Rhode Island', 'Rhode Island'], ['South Carolina', 'South Carolina'], ['South Dakota', 'South Dakota'], ['Tennessee', 'Tennessee'], ['Texas', 'Texas'], ['Utah', 'Utah'], ['Vermont', 'Vermont'], ['Virginia', 'Virginia'], ['Washington', 'Washington'], ['West Virginia', 'West Virginia'], ['Wisconsin', 'Wisconsin'], ['Wyoming', 'Wyoming'], ['Canada', 'Canada']]
 	end
+
+	def youtube_embed(link)
+		youtube_video_regex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
+		youtube_video = youtube_video_regex.match(link)[2]
+		url = "http://www.youtube.com/embed/#{youtube_video}"
+		url
+	end
+
 end

@@ -33,7 +33,7 @@
 				</div>
 			</div>
 			<div class="col-md-offset-2 col-md-8 mar-top20">
-				<% if @products.any? %>
+				<% if !@products.empty? %>
 					<% @products.each do |product| %>
 						<%= form_for(product.inventory, :html => {class: "inventory-form", :autocomplete => :off}) do |f| %>
 							<%= render 'shared/error_messages', object: f.object %>

@@ -5,6 +5,7 @@ class PagesController < ApplicationController
 	def home
 		@products = Product.all
 		@members = Member.all
+		@events = Event.all
 	end
 
 	def panel

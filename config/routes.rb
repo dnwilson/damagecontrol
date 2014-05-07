@@ -1,5 +1,15 @@
 Damagemiseh::Application.routes.draw do
 
+  resources :videos
+
+  get "events/index"
+  get "events/create"
+  get "events/new"
+  get "events/destroy"
+  get "events/show"
+  resources :events
+
+  resources :galleries
   resources :photos
 
   devise_for :users, :path =>'', :path_names => { :sign_in => 'login', :sign_out => 'logout', 
