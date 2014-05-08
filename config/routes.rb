@@ -54,7 +54,6 @@ Damagemiseh::Application.routes.draw do
   get "mycart", :controller => 'carts', :action => 'show', :id => 'current'
 
   # Catch all unmatched routes and return to home page
-  match '*path', via: :all, to: 'pages#error_404'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
