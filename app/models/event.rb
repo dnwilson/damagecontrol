@@ -5,11 +5,11 @@ class Event < ActiveRecord::Base
 
 	mount_uploader :flyer, ImageUploader
 
-	validates :name, presence: true, length: {maximum: 40, minimum: 3}
+	validates :name, presence: true, uniqueness: {scope: :date}, length: {maximum: 40, minimum: 3}
 	validates :flyer, presence: true
 	validates :date, presence: true
 	validates :venue, presence: true, length: {maximum: 30, minimum: 3}
-	validate :check_date
+	# validate :check_date
 	validate :check_date_format
 
 

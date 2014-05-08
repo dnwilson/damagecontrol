@@ -1,11 +1,11 @@
 development:
   adapter: postgresql
-  database: damage
+  database: damage_dev
   host: localhost
   
 test:
   adapter: postgresql
-  database: damage
+  database: damage_test
   host: localhost
   
 production:

@@ -1,0 +1,40 @@
+<section class="content">
+	<div class="container">
+		<div class="row mar-bot40">
+			<div class="col-md-2 col-sm-2 col-xs-2 content-date align-center">
+				<div class="date-container">
+					<div class="day pad-top10"><%= @video.date.strftime('%a') %></div>
+					<hr>
+					<div class="month"><%= @video.date.strftime('%b') %></div>
+					<div class="date"><%= @video.date.strftime('%d') %></div>
+				</div>
+			</div>
+			<div class="col-md-10 col-sm-10 col-xs-10 content-main">
+				<div class="row">
+					<div class="col-md-8 col-sm-8 mar-bot20 content-desc" id="video-desc">
+						<%= render partial: "admin_options" %>
+						<%= auto_html(@video.url){ youtube; link(:target => 'blank') } %>
+						<div class="mar-top20 content-details">
+							<%= @video.description_html %>
+						</div>
+						<hr>
+					</div>
+					<div class="col-md-4 col-sm-4 content-sidebar">
+						<%= render partial: "shared/event_widget", locals: {event: @video.event } %>
+						<hr>
+						<%= render partial: "shared/gallery_widget", locals: {gallery: @video.event.gallery } %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	$(document).ready(function(){
+		//Examples of how to assign the Colorbox video to elements
+		//$(".youtube").colorbox({iframe:true, innerWidth:640, innerHeight:390});
+		$(".group1").colorbox({rel:'group1', maxHeight:'90%'});
+		$(".content-main").fitVids();
+	});
+</script>

@@ -688,6 +688,11 @@ nav#filter a {
 	-moz-transition: all 0.2s ease-in-out;
 	-o-transition: all 0.2s ease-in-out;
 	transition: all 0.2s ease-in-out;
+	h3{
+		text-transform: uppercase;
+		font-weight: 700;
+		font-size: 20px;
+	}
 }
 .events-item img {
 	-webkit-transition: all 300ms linear;
@@ -1527,7 +1532,7 @@ section#order{
   --- Gallery section ----
 =========================== */
 .dropdown, .delete{
-	line-height: 35px;
+	font-size: 24px;
 	text-align: right;
 }
 .open ul.dropdown-menu{
@@ -1540,7 +1545,7 @@ section#order{
 #photos{
 	.photo-thumb{
 		img{
-			max-width: 100px;
+			max-width: 100%;
 			&:hover{
 				opacity: 0.7;
 			}
@@ -1550,25 +1555,6 @@ section#order{
 			text-align: center;
 		}
 	}
-
-	// .delete-img{
-	// 	top: 0;
-	// 	width: 100%;
-	// 	text-align: center;
-	// 	line-height: 100px;
-	// 	position: absolute;
-	// 	display: none;
-	// 	a{
-	// 		color: #cc9900;
-	// 		background-color: white;
-	// 		padding: 5px 10px;
-	// 		border-radius: 3px;
-	// 		moz-border-radius: 3px;
-	// 		&:hover{
-	// 			color: #333;
-	// 		}
-	// 	}
-	// }
 }
 
 .new_photo{
@@ -1602,54 +1588,112 @@ section#order{
 /*===========================
   --- Event section ----
 =========================== */
-.event-main{
-	.event-desc{
+section.content{
+	padding: 20px 0 60px;
+	color: #222222;
+	a{
+		color: #333;
+		&:hover{
+			color: lighten(#333, 20%);
+		}
+	}
+
+	h2, h3, h5{
+		text-transform: uppercase;
+	}
+
+	h3{
+		a{
+			color: darken(#ffcc00, 5%);
+			&:hover{
+				color: #cc9900;
+			}
+		}
+	}
+
+	h4{
+		font-size: 30px;
+		font-family: 'Great Vibes', cursive;
+	}
+
+	.content-desc{
 		img{
 			max-width: 100%;
 		}
 	}
-	.event-sidebar{
-		.club-name{
-			font-size: 20px;
-			line-height: 26px;
+	.content-sidebar{
+		img{
+			max-width: 100%;
+		}
+		h4{
+			margin-top: 5px;
+		}
+
+		.btn-primary{
+			color: white;
+			&:hover{
+				color: black;
+			}
+		}
+		.venue-details{
+			.club-name{
+				font-size: 24px;
+				line-height: 26px;
+				font-weight: 700;
+			}
+			.club-address{
+				margin-top: 5px;
+				font-size: 16px;
+				line-height: 20px;
+			}
+		}
+		.event-sidebar{
+			h4{
+				margin-top: 5px;
+			}
+			h5{
+				margin-top: 0px;
+				color: #666;
+			}
+		}
+		.gallery-sidebar{
+			img{
+				max-width: 100%;
+			}
+		}
+		.video-sidebar{
+			h3{
+				font-size: 18px;
+				margin-top: 10px;
+			}
+		}
+	}
+	.content-date{
+		max-width: 100px;
+		.date-container{
+			background-color: #ffcc00;
+			hr{
+				margin: 5px 0;
+			}
+		}
+		.day, .month{
+			font-size: 16px;
+			text-transform: uppercase;
+		}
+		.date{
+			padding: 5px 0 10px 0;
+			font-size: 30px;
 			font-weight: bold;
 		}
-		.club-address{
-			margin-top: 5px;
-			font-size: 14px;
-			line-height: 18px;
-		}
 	}
-	.event-details{
-		p{
-			font-size: 16px;
-			line-height: 22px;
-		}
-	}
-}
-.event-date{
-	max-width: 100px;
-	.date-container{
-		background-color: #ffcc00;
-		hr{
-			margin: 5px 0;
-		}
-	}
-	.day, .month{
-		font-size: 16px;
-		text-transform: uppercase;
-	}
-	.date{
-		padding: 5px 0 10px 0;
-		font-size: 30px;
-		font-weight: bold;
-	}
+
 }
 
-.events-item{
-	width: 293px;
-	img{
-		width: 293px;
+.modal{
+	select{
+		height: 35px; 
+		padding: 10px; 
+		width: 70%;
 	}
 }
 
@@ -1658,6 +1702,10 @@ section#order{
 }
 
 .video-thumb img{
+	width: 100%;
+}
+
+.btn-file{
 	width: 100%;
 }
 

@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20140505235217) do
     t.string   "name"
     t.string   "description"
     t.string   "preview_pic"
+    t.date     "date"
     t.integer  "user_id"
     t.integer  "event_id"
     t.datetime "created_at"

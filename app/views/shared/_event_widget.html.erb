@@ -1,0 +1,21 @@
+<div class="event-sidebar">
+	<% if !event.nil? %>
+		<h4>Event</h4>
+		<%= link_to image_tag(event.flyer.sm.url), event.flyer.url, :data => { :colorbox => true }, :class => "group1 cboxElement" %>
+		<h3 class="mar-top10 mar-bot10"><%= link_to event.name, event %></h3>
+		<h5><%= event.date.strftime("%A, %b #{event.date.day.ordinalize} %Y") %></br>@ <%= event.venue %>	
+		</h5>
+	<% else %>
+		<h4>Event</h4>
+		<p>There is no connected event.</p>
+		<% if Event.all.empty? %>
+			<%= link_to "Add an Event", new_event_path, class: "btn btn-primary" %>
+		<% else %>
+			<% if !@gallery.nil? %>
+				<%= render partial: "shared/event_modal", locals: {option: @gallery } %>
+			<% elsif !@video.nil? %>
+				<%= render partial: "shared/video_modal", locals: {option: @video } %>
+			<% end %>
+		<% end %>
+	<% end %>
+</div>

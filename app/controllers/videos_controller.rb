@@ -1,5 +1,6 @@
 class VideosController < ApplicationController
 	before_action :set_video, only: [:show, :edit, :update, :destroy]
+	before_filter :verify_event, only: [:new, :create, :update]
 	before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 	before_filter :verify_is_admin, only: [:new, :create, :edit, :update, :destroy]
 	def index
@@ -7,7 +8,7 @@ class VideosController < ApplicationController
 	end
 
 	def create
-		@video = Video.create(video_params)
+		@video = Video.create.build(video_params)
 		respond_to do |format|
 			youtube_video_regex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
 			youtube_video = youtube_video_regex.match(params[:video][:url])[2]
@@ -28,6 +29,9 @@ class VideosController < ApplicationController
 
 	def new
 		@video = Video.new
+	end
+
+	def edit
 	end
 
 	def update
@@ -70,6 +74,13 @@ class VideosController < ApplicationController
 			unless current_user.admin?
 				redirect_to(root_path)
 				flash[:warning] = "You do not have permission to carry out this function"
+			end
+		end
+
+		def verify_event
+			unless !Event.all.empty?
+				redirect_to(new_event_path)
+				flash[:warning] = "You must create an event before adding a video"
 			end
 		end
 end

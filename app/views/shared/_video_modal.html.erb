@@ -12,7 +12,16 @@
         <h4 class="modal-title" id="galleryModalLabel">Add a video to this event</h4>
       </div>
       <div class="modal-body">
-        <%= render partial: "videos/video_form" %>
+        <%= form_for(@video) do |f| %>
+          <%= render 'shared/error_messages', object: f.object %>
+          <%= f.hidden_field :event_id %>
+          <%= f.hidden_field :image %>
+          <%= f.hidden_field :name %>
+          <%= f.hidden_field :description %>
+          <%= f.hidden_field :date %>
+          <%= f.text_field :url, placeholder: "Video url", style: "height: 35px; padding: 10px; width: 70%;" %>
+          <%= f.submit "Add Video", class: "btn btn-primary pull-right", style: "height: 35px; width: 25%;" %>
+        <% end %>
       </div>
     </div>
   </div>

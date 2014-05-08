@@ -4,6 +4,7 @@ class CreateGalleries < ActiveRecord::Migration
       t.string :name
       t.string :description
       t.string :preview_pic
+      t.date :date
       t.integer :user_id
       t.integer :event_id
 

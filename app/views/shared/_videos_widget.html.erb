@@ -1,0 +1,19 @@
+<div class="video-sidebar mar-bot20">
+	<% if videos.empty? %>
+		<h4>Videos</h4>
+		<p>There are no connected videos.</p>
+		<%= render partial: "shared/video_modal" %>
+	<% else %>
+		<h4><%= link_to "Videos", videos_path %></h4>
+		<div id="videos" class="row">
+			<% videos.each do |video| %>
+				<div class="video-thumb video-<%= video.id %> mar-bot10 col-md-12 col-sm-12 col-xs-6" id="video-<%= video.id %>" >
+					<%= link_to youtube_embed(video.url), :data => { :colorbox => true }, :class => "youtube cboxElement" do %>
+						<img src="<%= video.image %>">
+					<% end %>
+					<h3><%= link_to video.name, video %></h3>
+				</div>
+			<% end %>
+		</div>
+	<% end %>
+</div>

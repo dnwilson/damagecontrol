@@ -45,8 +45,8 @@ class EventsController < ApplicationController
   end
 
   def show
-  	@gallery = Gallery.new(gallery_params)
-  	@video = Video.new(video_params)
+  	@gallery = Gallery.new(other_params)
+  	@video = Video.new(other_params)
   end
 
   private
@@ -58,11 +58,7 @@ class EventsController < ApplicationController
 			params.require(:event).permit(:name, :description, :date, :venue, :address, :flyer, :city, :state, :zipcode)
 		end
 
-		def gallery_params
-			{name: @event.name, description: @event.description, event_id: @event.id}
-		end
-
-		def video_params
+		def other_params
 			{name: @event.name, description: @event.description, event_id: @event.id, date: @event.date}
 		end
 

@@ -30,6 +30,8 @@ class GalleriesController < ApplicationController
 				params[:images].each { |image|
 					@gallery.photos.create(image: image)
 				}
+				@gallery.preview_pic = @gallery.photos.sample
+				@gallery.save
 			end
 			flash[:notice] = "Your gallery has been created."
 			redirect_to @gallery
@@ -69,7 +71,7 @@ class GalleriesController < ApplicationController
 		end
 
 		def gallery_params
-			params.require(:gallery).permit(:name, :description, :preview_image, :event_id)
+			params.require(:gallery).permit(:name, :description, :preview_pic, :date, :event_id)
 		end
 
 		def verify_is_admin

@@ -1,19 +1,55 @@
-<section class="panel">
+<section class="content">
 	<div class="container">
 		<div class="row mar-bot40">
-			<div class="col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8">
-				<%= render partial: "admin_options" %>
-				<% if @gallery.photos.empty? %>
-					<%= render partial: "photo_form" %>
-				<% else %>
-					<%= render partial: "photos" %>
-					<% if signed_in? %>
-						<div class="row">
+			<div class="col-md-2 col-sm-2 col-xs-2 content-date align-center">
+				<div class="date-container">
+					<div class="day pad-top10"><%= @gallery.date.strftime('%a') %></div>
+					<hr>
+					<div class="month"><%= @gallery.date.strftime('%b') %></div>
+					<div class="date"><%= @gallery.date.strftime('%d') %></div>
+				</div>
+			</div>
+			<div class="col-md-10 col-sm-10 col-xs-10 content-main">
+				<div class="row">
+					<div class="col-md-8 col-sm-8 mar-bot20 content-desc" id="video-desc">
+						<%= render partial: "admin_options" %>
+						
+						<% if @gallery.photos.empty? %>
 							<%= render partial: "photo_form" %>
-						</div>
-					<% end %>
-				<% end %>
+						<% else %>
+							<%= render partial: "photos" %>
+							<% if signed_in? %>
+								<div class="row">
+									<%= render partial: "photo_form" %>
+								</div>
+							<% end %>
+						<% end %>
+						<hr>
+					</div>
+					<div class="col-md-4 col-sm-4 content-sidebar">
+						<%= render partial: "shared/event_widget", locals: {event: @gallery.event } %>
+						<hr>
+						<% if !@gallery.event.nil? %>
+							<%= render partial: "shared/videos_widget", locals: {videos: @gallery.event.videos} %>
+						<% end %>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-7 col-sm-7 content-details">
+						<%= @gallery.description_html %>
+					</div>
+					<div class="col-md-5 col-sm-5"></div>
+				</div>
 			</div>
 		</div>
 	</div>
 </section>
+
+<script>
+	$(document).ready(function(){
+		//Examples of how to assign the Colorbox video to elements
+		$(".youtube").colorbox({iframe:true, innerWidth:640, innerHeight:390});
+		$(".group1").colorbox({rel:'group1', maxHeight:'90%'});
+		$(".content-main").fitVids();
+	});
+</script>

@@ -2,10 +2,9 @@ class Video < ActiveRecord::Base
 	belongs_to :event
 	serialize :params
 
-	mount_uploader :image, ImageUploader
+	# mount_uploader :image, ImageUploader
 
-	validates :name, presence: true, length: {maximum: 40, minimum: 3}
-	# validates :image, presence: true
+	validates :name, presence: true, uniqueness: {scope: :date}, length: {maximum: 40, minimum: 3}
 	validates :date, presence: true
 	validates :event_id, presence: true
 	validate :check_date
