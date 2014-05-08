@@ -1,4 +1,4 @@
-Carrierwave.configure do |config|
+CarrierWave.configure do |config|
 	if Rails.env.staging? || Rails.env.production?
 		config.fog_credentials = {
 			:provider               => 'AWS',                        # required
