@@ -1,4 +1,5 @@
 <%= form_for(@event) do |f| %>
+	<h4>Create a New Event</h4>
 	<%= render 'shared/error_messages', object: f.object %>
 	<%= f.text_field :name, placeholder: "Event name" %>
 	<div class="row">

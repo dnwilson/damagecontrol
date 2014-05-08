@@ -3,6 +3,8 @@ class Gallery < ActiveRecord::Base
 	belongs_to :event
 	has_many :photos, :dependent => :destroy
 
+	mount_uploader :preview_pic, ImageUploader
+
 	accepts_nested_attributes_for :photos, allow_destroy: true
 
 	validates :name, presence: true, uniqueness: {scope: :date}, length: {maximum: 40, minimum: 3}

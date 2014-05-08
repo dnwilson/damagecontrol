@@ -1,0 +1,9 @@
+<%= form_for(@post, :validate => true, :html => { :multipart => true, :autocomplete => :off}) do |f| %>
+	<h4>Create a New Post</h4>
+	<%= render 'shared/error_messages', object: f.object %>
+	
+	<%= f.text_field :title, placeholder: "Title" %>
+	<%= f.text_field :title, placeholder: "Title", :"data-url" => "/posts/#{@post.id}/photos", :multiple => "", :name => "photo[photo]", :type => "file" %>
+	<%= f.text_area :body, placeholder: "Place post details here..." %>
+	<%= f.submit "Create Post", class: "btn btn-black" %>
+<% end %>

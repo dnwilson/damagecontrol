@@ -1,17 +1,16 @@
 <section class="panel">
 	<div class="container">
+		<div class="greeting row mar-bot25">
+			<div class="col-md-10"><h2>Welcome, <%= current_user.first_name %></h2></div>
+			<div class="col-md-2 logout-btn"><%= button_to "logout", logout_path, method: :delete, class: "btn btn-black" %></div>
+		</div> 
 		<div class="row mar-bot40">
-			<div class="col-md-2 col-sm-2"></div>
-			<div class="col-md-8 col-sm-8">
+			<div class="col-md-3 col-sm-3">
 				<%= render partial: "shared/admin_nav" %>
-				<div class="row mar-top25">
-					<div class="col-md-12 pad-top40 pad-bot40">
-						<h2>New Video</h2>
-						<%= render partial: "video_form" %>
-					</div>
-				</div>
 			</div>
-			<div class="col-md-2 col-sm-2"></div>
+			<div class="col-md-9 col-sm-9">
+				<%= render partial: "video_form" %>
+			</div>
 		</div>
 	</div>
 </section>

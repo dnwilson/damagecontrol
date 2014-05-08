@@ -1,23 +1,22 @@
 <div class="cart-item row" id="<%=h line_item.id %>">
-  <div class="item-desc col-md-9">
+  <div class="item-desc col-md-9 col-md-9 col-xs-7">
     <div class="row">
       <div class="item-pic col-md-4">
         <%= image_tag Product.find(line_item.product).image.url(:thumb) %>
       </div>
-      <div class="item-det mar-top30">
-        <h4><%=h line_item.product.name %></h4>
+      <div class="item-det mar-top30 col-md-4">
+        <h4><%=h link_to line_item.product.name, line_item.product %></h4>
         <p><%=h set_size(line_item.size) %></p>
         <%=h button_to "REMOVE", line_item_path(line_item.product.id), method: :delete, class: "btn btn-primary" %>
       </div>
     </div>
   </div>
-  <div class="item-qty mar-top30 col-md-1">
+  <div class="item-qty mar-top30 col-md-1 col-sm-1 col-xs-2">
     <%= form_for(line_item, remote: true, :html => {:id => "item-#{line_item.id}"}) do |f| %>
       <%= f.select :quantity, line_item.product.available_qty(line_item.size), {selected: line_item.quantity}, {onchange: "$('#item-#{line_item.id}').submit();"} %>
     <% end %>
-
   </div>
-  <div class="item-price mar-top30 col-md-2">
+  <div class="item-price mar-top30 col-md-2 col-sm-2 col-xs-3">
     <%= number_to_currency(line_item.full_price) %>
   </div>
 </div>

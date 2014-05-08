@@ -8,7 +8,7 @@ class VideosController < ApplicationController
 	end
 
 	def create
-		@video = Video.create.build(video_params)
+		@video = Video.create(video_params)
 		respond_to do |format|
 			youtube_video_regex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
 			youtube_video = youtube_video_regex.match(params[:video][:url])[2]
@@ -16,7 +16,7 @@ class VideosController < ApplicationController
 			if @video.save
 				@video.update(image: preview)
 				flash[:notice] = "Video created successfully."
-				format.html {redirect_to videos_path}
+				format.html {redirect_to @video}
 			format.json {render json: @video, status: :created, location: @video}
 			format.js
 	  	else

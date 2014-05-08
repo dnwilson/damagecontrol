@@ -12,6 +12,7 @@ class GalleriesController < ApplicationController
 	end
 
 	def show
+		@video = Video.new(other_params)
 		@photo = Photo.new
         respond_to do |format|
             format.html # show.html.erb
@@ -30,7 +31,7 @@ class GalleriesController < ApplicationController
 				params[:images].each { |image|
 					@gallery.photos.create(image: image)
 				}
-				@gallery.preview_pic = @gallery.photos.sample
+				@gallery.preview_pic = @gallery.photos.sample.image
 				@gallery.save
 			end
 			flash[:notice] = "Your gallery has been created."
@@ -68,6 +69,10 @@ class GalleriesController < ApplicationController
 	private
 		def set_gallery
 			@gallery = Gallery.find(params[:id])
+		end
+
+		def other_params
+			{name: @gallery.name, description: @gallery.description, event_id: @gallery.event_id, date: @gallery.date}
 		end
 
 		def gallery_params

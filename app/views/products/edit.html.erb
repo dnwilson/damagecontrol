@@ -1,48 +1,15 @@
+<% provide(:title, "Edit Product") %>
 <section class="panel">
-	<div class="container">
-		<div class="row mar-bot40">
-			<div class="col-md-offset-2 col-md-8">
-				<%= render partial: "shared/admin_nav" %>
-				<div class="row mar-top25">
-					<div class="col-md-12 pad-top40 pad-bot40">
-						<%= form_for(@product, :validate => true, :html => {:class => 'product-form', :multipart => true, :autocomplete => :off}) do |f| %>
-							<%= render 'shared/error_messages', object: f.object %>
-							<div class="col-md-offset-1 col-md-10">
-								<%= f.text_field :name, placeholder: "Product Name"  %>
-							</div>
-
-							<div class="col-md-offset-1 col-md-10">
-								<div class="row">
-									<div class="col-md-6">
-									    <%= f.collection_select :product_category_id,  ProductCategory.all, :id, :name, label: false %>
-									</div>
-
-									<div class="col-md-6">
-										<%= f.file_field :image %>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-md-offset-1 col-md-10">
-								<%= f.text_area :description, placeholder: "Describe product..." %>
-							</div>
-
-							<div class="col-md-offset-1 col-md-10">
-								<div class="row">
-									<div class="col-md-6">
-									    <%= f.text_field :price, placeholder: "0.00" %>
-									</div>
-
-									<div class="col-md-6">
-										<%= f.submit "Create Product", class: "btn btn-black" %>
-									</div>
-								</div>
-							</div>
-
-						<% end %>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="container">
+    <%= render partial: "shared/greeting" %>  
+    <div class="row mar-bot40">
+      <div class="col-md-3 col-sm-3">
+        <%= render partial: "shared/admin_nav" %>
+      </div>
+      <div class="col-md-9 col-sm-9">
+      	<h4>Edit <%= @product.name %></h4>
+        <%= render "product_form" %>
+      </div>
+    </div>
+  </div>
 </section>

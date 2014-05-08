@@ -1,5 +1,8 @@
 require 'spec_helper'
 
+include Warden::Test::Helpers
+Warden.test_mode!
+
 describe EventsController do
 
   # Set valid event attributes
@@ -14,6 +17,13 @@ describe EventsController do
                              "zipcode" => "12345",
                              "flyer" => File.new(Rails.root + "spec/fixtures/fiyah.jpg") } }
 
+
+  before do
+    @request.env["devise.mapping"] = Devise.mappings[:admin]
+    @user = FactoryGirl.create(:user)
+    sign_in @user
+  end
+
   describe "GET index" do
     it "assigns all events as @events" do
       event = Event.create! valid_attributes
@@ -22,31 +32,19 @@ describe EventsController do
     end
   end
 
-  describe "GET 'create'" do
-    it "returns http success" do
-      get 'create'
-      response.should be_success
+  describe "GET show" do
+    it "assigns the requested event as @event" do
+      event = Event.create! valid_attributes
+      get :show, {:id => event.to_param}
+      assigns(:event).should eq(event)
     end
   end
 
-  describe "GET 'new'" do
-    it "returns http success" do
-      get 'new'
-      response.should be_success
-    end
-  end
-
-  describe "GET 'destroy'" do
-    it "returns http success" do
-      get 'destroy'
-      response.should be_success
-    end
-  end
-
-  describe "GET 'show'" do
-    it "returns http success" do
-      get 'show'
-      response.should be_success
+  describe "GET edit" do
+    it "assigns the requested event as @event" do
+      event = Event.create! valid_attributes
+      get :edit, {:id => event.to_param}
+      assigns(:event).should eq(event)
     end
   end
 

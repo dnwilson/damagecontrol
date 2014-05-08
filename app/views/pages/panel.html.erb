@@ -1,70 +1,12 @@
 <section class="panel">
-	<div class="container">   
+	<div class="container">
+		<%= render partial: "shared/greeting" %>  
 		<div class="row mar-bot40">
-			<div class="col-md-offset-2 col-md-8">
+			<div class="col-md-3 col-sm-3">
 				<%= render partial: "shared/admin_nav" %>
 			</div>
-		</div>
-		<div class="row mar-bot40">
-			<div class="inventory-header col-md-offset-2 col-md-8">
-				<div class="col-md-4">
-					<h5 class="align-left">Product</h5>
-				</div>
-				<div class="col-md-1">
-					<h5 class="align-center">xs</h5>
-				</div>
-				<div class="col-md-1">
-					<h5 class="align-center">s</h5>
-				</div>
-				<div class="col-md-1">
-					<h5 class="align-center">m</h5>
-				</div>
-				<div class="col-md-1">
-					<h5 class="align-center">l</h5>
-				</div>
-				<div class="col-md-1">
-					<h5 class="align-center">xl</h5>
-				</div>
-				<div class="col-md-1">
-					<h5 class="align-center">xxl</h5>
-				</div>
-				<div class="col-md-2">
-					<h5 class="align-center">Action</h5>
-				</div>
-			</div>
-			<div class="col-md-offset-2 col-md-8 mar-top20">
-				<% if !@products.empty? %>
-					<% @products.each do |product| %>
-						<%= form_for(product.inventory, :html => {class: "inventory-form", :autocomplete => :off}) do |f| %>
-							<%= render 'shared/error_messages', object: f.object %>
-							<div class="product-img col-md-4">
-								<%= image_tag(product.image(:thumb)) %>
-								<span class="name"><%= link_to "#{Product.find(product.id).name}", product_path(product) %></span>
-							</div>
-							<div class="col-md-1">
-								<%= f.text_field :xsmall %>
-							</div>
-							<div class="col-md-1">
-								<%= f.text_field :small %>
-							</div>
-							<div class="col-md-1">
-								<%= f.text_field :medium %>
-							</div>
-							<div class="col-md-1">
-								<%= f.text_field :large %>
-							</div>
-							<div class="col-md-1">
-								<%= f.text_field :xlarge %>
-							</div>
-							<div class="col-md-1">
-								<%= f.text_field :xxlarge %>
-							</div>
-							<div class="col-md-2">
-								<%= f.submit "Update", class: "btn btn-black" %>
-							</div>
-						<% end %>				
-					<% end %>
-				<% end %>
+			<div class="col-md-9 col-sm-9">
+				<%= render "shared/admin_edit" %>
 			</div>
 		</div>
 	</div>

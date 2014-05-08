@@ -2,6 +2,7 @@
 	<% if gallery.nil? %>
 		<h4>Photos</h4>
 		<p>There is no event attached to this gallery.</p>
+		<%= render partial: "shared/gallery_modal" %>
 	<% else %>
 		<h4><%= link_to "Photos", gallery_path(gallery) %></h4>
 		<div id="photos" class="row">

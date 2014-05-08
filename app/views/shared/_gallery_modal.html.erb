@@ -12,7 +12,18 @@
         <h4 class="modal-title" id="galleryModalLabel">Add a gallery to this event</h4>
       </div>
       <div class="modal-body">
-        <%= render partial: "galleries/gallery_form", locals: {gallery: @gallery} %>
+         <%= form_for(@gallery, :validate => true, :html => {:class => 'gallery-form', :multipart => true}) do |f| %>
+          <%= render 'shared/error_messages', object: f.object %>
+          <%= f.hidden_field :event_id %>
+          <%= f.hidden_field :preview_pic %>
+          <%= f.hidden_field :name %>
+          <%= f.hidden_field :description %>
+          <%= f.hidden_field :date %>
+          <div>
+              <%= file_field_tag "images[]", type: :file, multiple: true %>
+          </div>
+          <%= f.submit "Add Video", class: "btn btn-primary", style: "width: 100%;" %>
+        <% end %>
       </div>
     </div>
   </div>

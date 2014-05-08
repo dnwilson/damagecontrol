@@ -1207,6 +1207,9 @@ section.panel {
 			padding-top: 20px;
 		}
 	}
+	// .new_gallery, .new_event, .new_post, .new_product, .new_video{
+	// 	padding: 0 20px;
+	// }
 
 	form{
 		color: #777;
@@ -1215,6 +1218,9 @@ section.panel {
 			border: 2px solid #ddd;
 			margin-bottom: 25px;
 			width: 100%;
+		}
+		input[type="password"]{
+			height: 40px;
 		}
 		input#product_name{
 			padding: 10px;
@@ -1254,14 +1260,17 @@ section.panel {
 	.nav-pills > li.active > a, 
 	.nav-pills > li.active > a:hover, 
 	.nav-pills > li.active > a:focus {
-		background-color: #222;
-		color: #fff;
+		background-color: #ffcc00;
+		color: #222;
 	}
 
 	.nav-pills > li > a:hover, 
 	.nav-pills > li > a:hover{
 		background-color: #ffcc00;
 		color: #222;
+	}
+	.nav-stacked li a{
+		display: block;
 	}
 }
 
@@ -1279,9 +1288,6 @@ section.panel {
 		width: 40px !important;
 		height: 40px;
 	}
-}
-.inventory-header{
-	border-bottom: 1px solid #222;
 }
 
 .btn-black, .btn-primary{
@@ -1335,36 +1341,33 @@ section.panel {
 		padding: 10px;
 	}
 
-
-	.left-inner-addon{
-		position: relative;
-		input[type="text"], input[type="password"],
-		input[type="email"]{
-			padding: 6px 5px 5px 50px;
-			border: 2px solid #ddd;
-			margin-bottom: 25px;
-			width: 100%;
-			height: 40px;
-			-webkit-box-shadow: none 0 1px 1px rgba(0, 0, 0, 0.075);
-			box-shadow: none 0 1px 1px rgba(0, 0, 0, 0.075);
-			-webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-			transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-		}
-		i{
-			position: absolute;
-			padding: 12px 15px;
-			pointer-events: none;
-			color: white;
-			background-color: #ddd;
-		}
-	}
-
 	label{
 		display: none;
 	}
 
 }
-
+.left-inner-addon{
+	position: relative;
+	input[type="text"], input[type="password"],
+	input[type="email"]{
+		padding: 6px 5px 5px 50px;
+		border: 2px solid #ddd;
+		margin-bottom: 25px;
+		width: 100%;
+		height: 40px;
+		-webkit-box-shadow: none 0 1px 1px rgba(0, 0, 0, 0.075);
+		box-shadow: none 0 1px 1px rgba(0, 0, 0, 0.075);
+		-webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+		transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	}
+	i{
+		position: absolute;
+		padding: 12px 15px;
+		pointer-events: none;
+		color: white;
+		background-color: #ddd;
+	}
+}
 /*===========================
   --- Login section ----
 =========================== */
@@ -1556,6 +1559,14 @@ section#order{
 		}
 	}
 }
+
+.gallery-list, .video-list{
+	img{
+		max-width: 100%;
+	}
+}
+
+
 
 .new_photo{
 	border: 2px solid #ddd;

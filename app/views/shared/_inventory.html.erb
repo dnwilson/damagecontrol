@@ -1,0 +1,62 @@
+<div class="row mar-bot40">
+	<div class="inventory-header">
+		<div class="col-md-4 col-sm-4 col-xs-2">
+			<h5 class="align-left">Product</h5>
+		</div>
+		<div class="col-md-1 col-sm-1 col-xs-1">
+			<h5 class="align-center">xs</h5>
+		</div>
+		<div class="col-md-1 col-sm-1 col-xs-1">
+			<h5 class="align-center">s</h5>
+		</div>
+		<div class="col-md-1 col-sm-1 col-xs-1">
+			<h5 class="align-center">m</h5>
+		</div>
+		<div class="col-md-1 col-sm-1 col-xs-1">
+			<h5 class="align-center">l</h5>
+		</div>
+		<div class="col-md-1 col-sm-1 col-xs-1">
+			<h5 class="align-center">xl</h5>
+		</div>
+		<div class="col-md-1 col-sm-1 col-xs-1">
+			<h5 class="align-center">xxl</h5>
+		</div>
+		<div class="col-md-2 col-sm-2 col-xs-4">
+			<h5 class="align-center">Action</h5>
+		</div>
+	</div>
+	<div class="mar-top20">
+		<% if !@products.empty? %>
+			<% @products.each do |product| %>
+				<%= form_for(product.inventory, :html => {class: "inventory-form", :autocomplete => :off}) do |f| %>
+					<%= render 'shared/error_messages', object: f.object %>
+					<div class="product-img col-md-4 col-sm-4 col-xs-2">
+						<%= link_to image_tag(product.image(:thumb)), product %>
+						<span class="name hiddem-sm hidden-xs"><%= link_to "#{Product.find(product.id).name}", product_path(product) %></span>
+					</div>
+					<div class="col-md-1 col-sm-1 col-xs-1">
+						<%= f.text_field :xsmall %>
+					</div>
+					<div class="col-md-1 col-sm-1 col-xs-1">
+						<%= f.text_field :small %>
+					</div>
+					<div class="col-md-1 col-sm-1 col-xs-1">
+						<%= f.text_field :medium %>
+					</div>
+					<div class="col-md-1 col-sm-1 col-xs-1">
+						<%= f.text_field :large %>
+					</div>
+					<div class="col-md-1 col-sm-1 col-xs-1">
+						<%= f.text_field :xlarge %>
+					</div>
+					<div class="col-md-1 col-sm-1 col-xs-1">
+						<%= f.text_field :xxlarge %>
+					</div>
+					<div class="col-md-2 col-sm-2 col-xs-4">
+						<%= f.submit "Update", class: "btn btn-black" %>
+					</div>
+				<% end %>				
+			<% end %>
+		<% end %>
+	</div>
+</div>

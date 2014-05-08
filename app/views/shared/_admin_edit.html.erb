@@ -1,0 +1,9 @@
+ <%= form_for(current_user, :url => registration_path(current_user), :html => { :method => :put }) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.password_field :password, :autocomplete => "off", placeholder: "New Password"  %>
+
+  <%= f.password_field :password_confirmation, placeholder: "Confirmation"  %>
+  <%= f.password_field :current_password, placeholder: "Current Password"  %>
+  <%= f.submit "Update", class: "btn btn-black" %>
+<% end %>

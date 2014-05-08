@@ -1,20 +1,19 @@
-<section class="panel">
+<section class="content">
 	<div class="container">
 		<div class="row mar-bot40">
-			<div class="col-md-12 col-sm-12 col-xs-12">
+			<div class="col-md-8 col-sm-8 col-xs-12 content-main">
 				<% if !@galleries.empty? %>
 					<div class="gallery-list">
 						<% @galleries.each do |gallery| %>
 							<div class="col-md-3 col-sm-4 col-xs-6 align-center" id="<%= gallery.id %>">
-								<img src="assets/default.svg" class="img-rounded">
-								<h3 class="mar-top10 mar-bot10"><%= gallery.name %></h3>
-								<div class="gallery-desc mar-bot20">
-									<%= gallery.description %>
-								</div>
+								<%= link_to image_tag(gallery.preview_pic.sm.url) %>
+								<h5 class="mar-top10 mar-bot10"><%= link_to gallery.name, gallery %></h5>
 							</div>
 						<% end %>
 					</div>
 				<% end %>
+			</div>
+			<div class="col-md-4 col-sm-4 hidden-xs content-sidebar">
 			</div>
 		</div>
 	</div>

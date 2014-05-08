@@ -2,6 +2,8 @@
 	<li class="active"><a href="#featured">Home</a></li>
 	<li><a href="#section-members">Members</a></li>
 	<li><a href="#section-works">Events</a></li>
+	<li><%= link_to "Photos", galleries_path %></li>
+	<li><%= link_to "Videos", videos_path %></li>
 	<li><a href="<%= shop_path %>">Shop</a></li>
 	<% if signed_in? %>
 		<% if current_user.admin? %>
@@ -20,6 +22,8 @@
 	<li><%= link_to "Home", root_path %></li>
 	<li><a href="<%= root_path %>#section-members">Members</a></li>
 	<li><a href="<%= root_path %>#section-works">Events</a></li>
+	<li><%= link_to "Photos", galleries_path %></li>
+	<li><%= link_to "Videos", videos_path %></li>
 	<li class="<%= 'active' if current_page?(shop_path) || current_page?(orders_path) || current_page?(products_path) %>"><a href="<%= shop_path %>">Shop</a></li>
 	<% if signed_in? %>
 		<% if current_user.admin? %>

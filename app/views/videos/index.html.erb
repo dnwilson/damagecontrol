@@ -1,16 +1,17 @@
 <section class="panel">
 	<div class="container">
 		<div class="row mar-bot40">
-			<div class="col-md-2 col-sm-2"></div>
-			<div class="col-md-8 col-sm-8">
-				<% @videos.each do |video| %>
-					<div>
-						<%= link_to image_tag(video.image), video.url %>
-					</div>
-				<% end %>
-				
+			<div class="col-md-8 col-sm-8 col-xs-12 content-main">
+				<div class="video-list">
+					<% @videos.each do |video| %>
+						<div class="col-md-3 col-sm-4 col-xs-6 align-center" id="<%= video.id %>">
+							<%= link_to image_tag(video.image), video.url %>
+							<h5 class="mar-top10 mar-bot10"><%= link_to video.name, video %></h5>
+						</div>
+					<% end %>
+				</div>
 			</div>
-			<div class="col-md-2 col-sm-2"></div>
+			<div class="col-md-4 col-sm-4 hidden-xs content-sidebar"></div>
 		</div>
 	</div>
 </section>

@@ -1,48 +1,33 @@
 <% provide(:title, 'Shopping Cart') %>
-
 <section id="section-cart" class="section appear clearfix">
   <div class="container">
-    <% if @cart.line_items.empty? %>
     <div class="row mar-bot40">
-      <div class="col-md-offset-2 col-md-8">
-        <h2 class="align-center pad-bot30">Shopping Cart</h2>
-        <p style="text-align: center;">
-          There are currently no items in your cart. To add an item to your cart please visit the <%= link_to "shop", shop_path %>.
-        </p>
-      </div>
-    </div>
-    <% else %>
-      <div class="row mar-bot40">
-        <div class="col-md-offset-2 col-md-8">
-          <h2 class="align-center pad-bot30">Shopping Cart</h2>
-          <div class="cart-header row">
-            <div class="header-desc col-md-9">Product</div>
-            <div class="header-qty col-md-1">Qty</div>
-            <div class="header-price col-md-2">Price</div>
-          </div>
+      <div class="col-md-8 col-sm-8 col-xs-12"> <!-- Main Content -->
+        <% if @cart.line_items.empty? %>
+            <%= render "empty" %>
+        <% else %>
+          <%= render "header" %>
           <div class="cart-items">
             <% for line_item in @cart.line_items %>
               <%= render partial: 'cart_item', locals: {line_item: line_item} %>
             <% end %>
           </div>
           <div class="row order-summary mar-top20">
-            <div class="col-md-7">
-              <div class="row">
-                <%= link_to "Continue Shopping", products_url, class: "btn btn-primary" %>
-              </div>
-              <div class="shipping row mar-top30">
+            <div class="col-md-7 col-sm-7 col-xs-7">
+              <%= link_to "Continue Shopping", products_url, class: "btn btn-primary" %>
+              <div class="shipping mar-top30">
                 <h4>Choose State:</h4>
                 <%= form_for(@cart, shipping_state: params[:shipping_state], remote: true, :html => {:id => "cart-#{@cart.id}"}) do |f| %>
                   <%= f.select :shipping_state, options_for_select(states_list), {selected: @cart.shipping_state}, {onchange: "$('#cart-#{@cart.id}').submit();"} %>
-                  <% end %>
+                <% end %>
               </div>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-5 col-sm-5 col-xs-5">
               <div class="row">
-                <div class="col-md-8 subtotal-text">
+                <div class="col-md-8 col-sm-8 col-xs-7 subtotal-text">
                   Subtotal:
                 </div>
-                <div class="col-md-4 subtotal">
+                <div class="col-md-4  col-sm-4 col-xs-5 subtotal">
                   <%= number_to_currency @cart.total_price %>
                 </div>
               </div>
@@ -50,20 +35,23 @@
                 <%= render partial: 'shipping_info', locals: {cart: @cart} %>
               </div>
               <div class="row mar-top20">
-                <div class="col-md-8 total-text">
+                <div class="col-md-8 col-sm-8 col-xs-7 total-text">
                   Total:
                 </div>
-                <div class="col-md-4 cart-total">
+                <div class="col-md-4 col-sm-4 col-xs-5 cart-total">
                   <%= number_to_currency @cart.shipping_cost + @cart.total_price %>
                 </div>
               </div>
-              <div class="row mar-top20">
+              <div class="mar-top20">
                 <%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), express_new_order_path, class: "pull-right" %>
               </div>
             </div>
           </div>
-        </div>
+        <% end %>
+      </div> <!-- End Main Content -->
+      <div class="col-md-4 col-sm-4 hidden-xs">
+        
       </div>
-    <% end %>
+    </div>
   </div>
 </section>
