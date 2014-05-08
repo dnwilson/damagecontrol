@@ -53,6 +53,7 @@ class VideosController < ApplicationController
 	end
 
 	def show
+		@gallery = Gallery.new(other_params)
 	end
 
 	private
@@ -68,6 +69,10 @@ class VideosController < ApplicationController
 
 		def video_params
 			params.require(:video).permit(:name, :description, :date, :image, :event_id, :url)
+		end
+
+		def other_params
+			{name: @video.event.name, description: @video.event.description, event_id: @video.event.id, date: @video.event.date}
 		end
 
 		def verify_is_admin
