@@ -12,7 +12,7 @@ class Event < ActiveRecord::Base
 	# validate :check_date
 	validate :check_date_format
 
-
+	default_scope order: 'date DESC'
 
 	auto_html_for :description do
 		html_escape

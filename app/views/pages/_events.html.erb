@@ -23,9 +23,21 @@
 				<div class="row">
 					<div class="events-items isotopeWrapper clearfix" id="3">
 						<% if !@events.empty? %>
-							<% @events.limit(12).each do |event| %>
+							<% @events.limit(11).each do |event| %>
 								<%= render partial: "events/event", locals: {event: event} %>
 							<% end %>
+							<article class="col-md-4 isotopeItem">
+								<div class="events-item">
+									<%= link_to image_tag("LOGO.jpg"), events_path %>
+									
+									<%= link_to events_path, :class => "events-desc align-center" do %>
+										<h3>Click here</h3>
+										<h5><i class="fa fa-plus fa-2x"></i></h5>
+										<h6>For Older Events</h6>
+										<!-- <i class="fa fa-plus fa-2x"></i> -->
+									<% end %>
+								</div>
+							</article>
 						<% end %>
 					</div> 
 				</div>

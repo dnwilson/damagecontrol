@@ -1702,6 +1702,14 @@ section.content{
 
 }
 
+#events-list{
+	article{
+		margin-bottom: 20px;
+	}
+	.events-item img{
+		width: 100%;
+	}
+}
 .modal{
 	select{
 		height: 35px; 
