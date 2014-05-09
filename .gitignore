@@ -22,6 +22,7 @@
 # Ignore s3 info
 /config/initializers/asset_sync.rb
 /config/asset_sync.yml
+/config/initializers/carrierwave.rb
 
 # Ignore certs config
 #/config/app_config.yml
