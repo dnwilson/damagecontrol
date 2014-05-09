@@ -1289,6 +1289,12 @@ section.panel {
 .btn-black, .btn-primary{
 	background-color: #222;
 	color: #fff;
+	background-image: none;
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#222', endColorstr='#222', GradientType=0);
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+	background-repeat: repeat-x;
+	border-color: none;
 	&:hover{
 		background-color: #ffcc00;
 		color: #222;
@@ -1703,6 +1709,11 @@ section.content{
 		width: 70%;
 	}
 }
+
+.isotope-item {
+	height: 293px !important;
+}
+
 
 .gallery #photos .photo-thumb img{
 	max-width: 100%;

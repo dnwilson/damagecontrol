@@ -2,7 +2,7 @@
 	<div class="events-item">
 		<%= link_to image_tag(event.flyer.sm.url), event_path(event.id) %>
 		
-		<%= link_to event, :data => { :colorbox => true }, :class => "events-desc align-center group1 cboxElement" do %>
+		<%= link_to event, :class => "events-desc align-center" do %>
 			<h3><%= event.name %></h3>
 			<h5>@ <%= event.venue %></h5>
 			<h6><%= event.date.strftime("%A, %b #{event.date.day.ordinalize} %Y") %></h6>
