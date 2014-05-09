@@ -10,7 +10,8 @@ CarrierWave.configure do |config|
 		}
 		config.fog_directory  = 'damagecontrolfamily'                     # required
 		config.fog_public     = false                                   # optional, defaults to true
-		config.storage = :fog
+		config.storage		  = :fog
+		config.asset_host	  = "http://assets%d.damagecontrolfamily.com"
 	else
 		config.storage = :file
 	end
