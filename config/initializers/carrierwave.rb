@@ -1,6 +1,6 @@
 CarrierWave.configure do |config|
 
-	if Rails.env.test? || Rails.env.cucumber?
+	if Rails.env.test? || Rails.env.cucumber? || Rails.env.development?
 		config.storage = :file
 		config.enable_processing = false
 		config.root = "#{Rails.root}/tmp"
@@ -16,7 +16,7 @@ CarrierWave.configure do |config|
 		}
 		config.fog_directory  = ENV['FOG_DIRECTORY']                 		# required
 		config.fog_public     = true                                   		# optional, defaults to true
-		# config.asset_host	  = "http://assets%d.damagecontrolfamily.com"  	# optional, defaults to true
+		config.asset_host	  = "http://assets#{[0,1,2,3].sample}.damagecontrolfamily.com"  	# optional, defaults to true
 	  	config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}  	# optional, defaults to {}
 	end
 end

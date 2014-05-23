@@ -14,6 +14,7 @@ gem 'carrierwave'
 gem 'activemerchant'
 gem 'auto_html'
 gem 'asset_sync'
+gem 'activeadmin',  github: 'gregbell/active_admin'
 
 # Use SCSS for stylesheets
 gem 'rails_layout'

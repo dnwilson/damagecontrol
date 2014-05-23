@@ -4,7 +4,7 @@
 		
 		<%= link_to event, :class => "events-desc align-center" do %>
 			<h3><%= event.name %></h3>
-			<h5>@ <%= event.venue %></h5>
+			<h6>@ <%= event.venue %></h6>
 			<h6><%= event.date.strftime("%A, %b #{event.date.day.ordinalize} %Y") %></h6>
 			<!-- <i class="fa fa-plus fa-2x"></i> -->
 		<% end %>

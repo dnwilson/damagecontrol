@@ -1,5 +1,6 @@
 Damagemiseh::Application.routes.draw do
-
+, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   resources :videos
 
   get "events/index"
