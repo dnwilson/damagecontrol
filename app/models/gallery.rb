@@ -9,7 +9,8 @@ class Gallery < ActiveRecord::Base
 
 	validates :name, presence: true, uniqueness: {scope: :date}, length: {maximum: 40, minimum: 3}
 	validates :date, presence: true
-	validate :check_date
+	validates :event_id, presence: true
+	# validate :check_date
 	validate :check_date_format
 
 	auto_html_for :description do

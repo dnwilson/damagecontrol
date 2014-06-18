@@ -44,7 +44,7 @@ class EventsController < ApplicationController
   end
 
   def show
-  	@gallery = Gallery.new(other_params)
+  	@gallery = @event.gallery
   	@video = Video.new(other_params)
   end
 

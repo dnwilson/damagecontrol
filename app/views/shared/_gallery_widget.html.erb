@@ -1,8 +1,8 @@
 <div class="gallery-sidebar">
-	<% if gallery.nil? %>
+	<% if gallery.photos.empty? %>
 		<h4>Photos</h4>
-		<p>There is no event attached to this gallery.</p>
-		<%= render partial: "shared/gallery_modal" %>
+		<p>This event has no photos.</p>
+		<%= link_to "Add Photos", gallery_path(gallery), :class => "btn btn-lg btn-primary" %>
 	<% else %>
 		<h4><%= link_to "Photos", gallery_path(gallery) %></h4>
 		<div id="photos" class="row">

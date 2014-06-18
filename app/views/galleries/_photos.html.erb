@@ -1,6 +1,6 @@
 <div id="photos" class="row">
 	<% @gallery.photos.each do |photo| %>
-		<%= render partial: 'shared/photo', locals: {photo: photo} %>
+		<%= render 'shared/photo', photo: photo %>
 	<% end %>
 </div>
 

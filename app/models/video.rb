@@ -7,7 +7,7 @@ class Video < ActiveRecord::Base
 	validates :name, presence: true, uniqueness: {scope: :date}, length: {maximum: 40, minimum: 3}
 	validates :date, presence: true
 	validates :event_id, presence: true
-	validate :check_date
+	# validate :check_date
 	validate :check_date_format
 	validate :valid_url?
 

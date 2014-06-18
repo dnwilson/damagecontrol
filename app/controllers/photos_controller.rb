@@ -11,13 +11,14 @@ class PhotosController < ApplicationController
 	end
 
 	def create
-		@gallery = Gallery.find(params[:photo][:gallery_id])
+		@gallery = Gallery.includes(:photos).find(params[:photo][:gallery_id])
 		if params[:images]
 			params[:images].each do |image|
 				@gallery.photos.create(image: image)
-				@gallery.photos.each do |photo|
-					@photo = Photo.find(photo.id)
-				end
+				@photo = @gallery.photos.last
+				# @gallery.photos.find_by_image(image) do |photo|
+				# 	@photo = Photo.find(photo.id)
+				# end
 			end
 		end
 	end

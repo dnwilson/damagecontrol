@@ -1,1 +1,1 @@
-$("#photos").append("<%= escape_javascript(render partial: 'shared/photo', locals: {photo: @photo}) %>");
+$("#photos").append("<%= escape_javascript(render 'shared/photo', photo: @photo) %>");

@@ -30,6 +30,8 @@ Damagemiseh::Application.configure do
   Paperclip.options[:command_path] = "/usr/local/bin/"
 
   config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true
     ActiveMerchant::Billing::Base.mode = :test
     paypal_options = {
       :login => "seller_api1.damagecontrolfamily.com",

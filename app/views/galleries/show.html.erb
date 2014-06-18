@@ -12,12 +12,12 @@
 			<div class="col-md-10 col-sm-10 col-xs-10 content-main">
 				<div class="row">
 					<div class="col-md-8 col-sm-8 mar-bot20 content-desc" id="video-desc">
-						<%= render partial: "admin_options" %>
+						<%= render "admin_options" %>
 						
 						<% if @gallery.photos.empty? %>
-							<%= render partial: "photo_form" %>
+							<%= render "photo_form" %>
 						<% else %>
-							<%= render partial: "photos" %>
+							<%= render "photos" %>
 							<% if signed_in? %>
 								<div class="row">
 									<%= render partial: "photo_form" %>
@@ -27,10 +27,10 @@
 						<hr>
 					</div>
 					<div class="col-md-4 col-sm-4 content-sidebar">
-						<%= render partial: "shared/event_widget", locals: {event: @gallery.event } %>
+						<%= render "shared/event_widget", event: @gallery.event  %>
 						<hr>
 						<% if !@gallery.event.nil? %>
-							<%= render partial: "shared/videos_widget", locals: {videos: @gallery.event.videos} %>
+							<%= render "shared/videos_widget", videos: @gallery.event.videos %>
 						<% end %>
 					</div>
 				</div>

@@ -3,6 +3,8 @@ class Event < ActiveRecord::Base
 	has_one :gallery
 	has_many :videos
 
+	after_create :add_gallery
+
 	mount_uploader :flyer, ImageUploader
 
 	validates :name, presence: true, uniqueness: {scope: :date}, length: {maximum: 40, minimum: 3}
@@ -12,7 +14,7 @@ class Event < ActiveRecord::Base
 	# validate :check_date
 	validate :check_date_format
 
-	default_scope order: 'date DESC'
+	default_scope {order('date DESC')}
 
 	auto_html_for :description do
 		html_escape
@@ -30,6 +32,10 @@ class Event < ActiveRecord::Base
 
 		def check_date_format
 			self.errors[:date] << "must be a valid date" unless Date.parse(self.date) rescue false
+		end
+
+		def add_gallery
+			Gallery.create!(name: name, date: date, preview_pic: flyer, event_id: id)
 		end
 
 end

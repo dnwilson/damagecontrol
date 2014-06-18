@@ -8,7 +8,7 @@ class GalleriesController < ApplicationController
 	end
 
 	def index
-		@galleries = Gallery.all
+		@galleries = Gallery.includes(:photos)
 	end
 
 	def show
