@@ -2,6 +2,9 @@ class PostsController < ApplicationController
 	before_filter :authenticate_user!, only: [:new, :create, :destroy]
 	before_filter :verify_is_admin, only: [:new, :create, :destroy]
 
+	caches_action :index
+	caches_action :show, layout: false
+
 	def new
 		@post = Post.new
 		@categories = ProductCategory.all
@@ -16,6 +19,7 @@ class PostsController < ApplicationController
 
 		respond_to do |format|
 			if @post.save
+				expire_action action: :index
 				format.html {redirect_to posts_path}
 				format.json {render json: @post, status: :created, location: @post}
 				format.js

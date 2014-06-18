@@ -8,6 +8,8 @@ gem 'pg'
 gem 'pg_search'
 gem 'devise', '~> 3.2.2'
 gem 'paperclip', '~> 4.1'
+gem 'actionpack-page_caching'
+gem 'actionpack-action_caching'
 
 gem 'rmagick', require: false
 gem 'carrierwave'
@@ -78,6 +80,7 @@ group :production do
   gem "rails_12factor"
   gem "unicorn"
   gem "newrelic_rpm"
+  gem "dalli"
 end
 
 # Use ActiveModel has_secure_password

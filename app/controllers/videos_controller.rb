@@ -3,6 +3,10 @@ class VideosController < ApplicationController
 	before_filter :verify_event, only: [:new, :create, :update]
 	before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 	before_filter :verify_is_admin, only: [:new, :create, :edit, :update, :destroy]
+	
+	caches_action :index
+	caches_action :show, layout: false
+
 	def index
 		@videos = Video.all
 	end
@@ -15,15 +19,19 @@ class VideosController < ApplicationController
 			preview = "http://img.youtube.com/vi/#{youtube_video}/0.jpg"
 			if @video.save
 				@video.update(image: preview)
+				
+				expire_action action: :index
+				expire_action action: :show
+
 				flash[:notice] = "Video created successfully."
 				format.html {redirect_to @video}
-			format.json {render json: @video, status: :created, location: @video}
-			format.js
-	  	else
-	  		format.html {render 'videos/new'}
-			format.json {render json: @events.errors, status: :unprocessable_entity}
-			format.js 	{render 'videos/new'}
-	  	end
+				format.json {render json: @video, status: :created, location: @video}
+				format.js
+		  	else
+		  		format.html {render 'videos/new'}
+				format.json {render json: @events.errors, status: :unprocessable_entity}
+				format.js 	{render 'videos/new'}
+		  	end
 		end
 	end
 
@@ -36,7 +44,10 @@ class VideosController < ApplicationController
 
 	def update
 		if @video.update(video_params)
-		# to handle multiple images upload on update when user add more picture
+			# to handle multiple images upload on update when user add more picture
+			expire_action action: :index
+			expire_action action: :show
+			
 			flash[:notice] = "video has been updated."
 			redirect_to @video
 		else

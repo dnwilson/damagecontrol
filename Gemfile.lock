@@ -27,6 +27,10 @@ GEM
       activesupport (= 4.1.1)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
+    actionpack-action_caching (1.1.1)
+      actionpack (>= 4.0.0, < 5.0)
+    actionpack-page_caching (1.0.2)
+      actionpack (>= 4.0.0, < 5)
     actionview (4.1.1)
       activesupport (= 4.1.1)
       builder (~> 3.1)
@@ -114,6 +118,7 @@ GEM
       countries (= 0.9.3)
     currencies (0.4.2)
     daemons (1.1.9)
+    dalli (2.7.2)
     debug_inspector (0.0.2)
     devise (3.2.4)
       bcrypt (~> 3.0)
@@ -365,6 +370,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionpack-action_caching
+  actionpack-page_caching
   activeadmin!
   activemerchant
   asset_sync
@@ -379,6 +386,7 @@ DEPENDENCIES
   childprocess
   coffee-rails (~> 4.0.0)
   country_select
+  dalli
   devise (~> 3.2.2)
   factory_girl_rails
   font-awesome-rails

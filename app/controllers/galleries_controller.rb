@@ -3,12 +3,15 @@ class GalleriesController < ApplicationController
 	before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 	before_filter :verify_is_admin, only: [:new, :create, :edit, :update, :destroy]
 	
+	caches_action :index
+	caches_action :show, layout: false
+
 	def new
 		@gallery = Gallery.new
 	end
 
 	def index
-		@galleries = Gallery.includes(:photos)
+		@galleries = Gallery.all
 	end
 
 	def show
@@ -34,6 +37,7 @@ class GalleriesController < ApplicationController
 				@gallery.preview_pic = @gallery.photos.sample.image
 				@gallery.save
 			end
+			expire_action action: :index
 			flash[:notice] = "Your gallery has been created."
 			redirect_to @gallery
 		else 
@@ -50,7 +54,7 @@ class GalleriesController < ApplicationController
 				@gallery.photos.create(image: image)
 				}
 			end
-
+			expire_action action: :show
 			flash[:notice] = "Gallery has been updated."
 			redirect_to @gallery
 		else

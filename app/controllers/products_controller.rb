@@ -1,6 +1,9 @@
 class ProductsController < ApplicationController
 	before_filter :authenticate_user!, only: [:new, :create, :destroy, :edit, :update]
 	before_filter :verify_is_admin, only: [:new, :create, :destroy, :edit, :update]
+	
+	caches_action :index
+	caches_action :show, layout: false
 
 	def new
 		@product = Product.new
@@ -15,6 +18,7 @@ class ProductsController < ApplicationController
 
 		respond_to do |format|
 			if @product.save
+				expire_action action: :index
 				format.html { redirect_to @product}
 				format.json { render json: @product, status: :created, location: @product}
 				format.js
@@ -34,6 +38,10 @@ class ProductsController < ApplicationController
 		@product = Product.find(params[:id])
 		respond_to do |format|
          if @product.update_attributes(product_params)
+         	
+         	expire_action action: :index
+         	expire_action action: :show
+
             format.html {redirect_to shop_path}
             format.json {head :no_content}
             format.js

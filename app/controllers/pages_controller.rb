@@ -2,6 +2,10 @@ class PagesController < ApplicationController
 	before_filter :authenticate_user!, only: [:panel]
 	before_filter :verify_is_admin, only: [:panel]
 
+	caches_action :home, layout: false
+	caches_action :contact
+	caches_action :about
+
 	def home
 		@products = Product.all
 		@members = Member.all
