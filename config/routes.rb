@@ -1,5 +1,7 @@
 Damagemiseh::Application.routes.draw do
 
+  resources :venues
+
   resources :videos
 
   resources :events

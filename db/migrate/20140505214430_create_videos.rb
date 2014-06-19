@@ -10,5 +10,7 @@ class CreateVideos < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :videos, :id 
+    add_index :videos, [:id, :event_id]
   end
 end

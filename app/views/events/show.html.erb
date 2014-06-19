@@ -21,9 +21,9 @@
 					</div>
 					<div class="col-md-4 col-sm-4 content-sidebar">
 						<div class="venue-details">
-							<div class="club-name"><%= @event.venue %></div>
-							<div class="club-address"><%= @event.address %></br>
-							<%= @event.city %>, <%= @event.state %> <%= @event.zipcode %></div>
+							<div class="club-name"><%= @event.venue.name %></div>
+							<div class="club-address"><%= @event.venue.address %></br>
+							<%= @event.venue.city %>, <%= @event.venue.state %> <%= @event.venue.zipcode %> </br><%= @event.venue.country %></div>
 						</div>
 						<hr>
 						<%= render partial: "shared/gallery_widget", locals: {gallery: @event.gallery} %>

@@ -11,18 +11,6 @@
 		</div>
 	</div>
 	<%= f.text_area :description, placeholder: "Describe event..." %>
-	<%= f.text_field :venue, placeholder: "Venue" %>
-	<%= f.text_field :address, placeholder: "Address" %>
-	<div class="row">
-		<div class="col-md-4 col-xs-4">
-			<%= f.text_field :city, placeholder: "City" %>
-		</div>
-		<div class="col-md-4 col-xs-4">
-			<%= f.text_field :state, placeholder: "State" %>
-		</div>
-		<div class="col-md-4 col-xs-4">
-			<%= f.text_field :zipcode, placeholder: "Zip" %>
-		</div>
-	</div>
+	<%= f.collection_select :venue_id, Venue.all, :id, :name %>
 	<%= f.submit "Submit", class: "btn btn-primary" %>
 <% end %>

@@ -116,3 +116,37 @@ Member.create!(name: "TJ",
 ProductCategory.create!(name: "Apparel")
 ProductCategory.create!(name: "Downloadable (Single)")
 ProductCategory.create!(name: "Downloadable (Album)")
+
+Venue.create!(name: "Cozy Corner", 
+	address: "1298 Park Pl", 
+	address2: "bet. Troy & Schenectady",
+	city: "Brooklyn",
+	state: "NY",
+	zipcode: "11213",
+	country: "United States"
+	)
+
+Venue.create!(name: "Universal Resort", 
+	address: "4807 Church Ave", 
+	address2: "bet. E 48th & E 49th St",
+	city: "Brooklyn",
+	state: "NY",
+	zipcode: "11203",
+	country: "United States"
+	)
+
+Venue.create!(name: "Lowkey Lounge", 
+	address: "578 Albany Ave", 
+	address2: "bet. Midwood & Ruthland Rd",
+	city: "Brooklyn",
+	state: "NY",
+	zipcode: "11203",
+	country: "United States"
+	)
+
+Venue.create!(name: "Fire Stick HQ", 
+	address: "York Ave", 
+	address2: "Off Hagley Park Rd bet Delta & Universal Church",
+	city: "Kingston 11",
+	country: "Jamaica"
+	)

@@ -2,6 +2,7 @@ class Event < ActiveRecord::Base
 
 	has_one :gallery
 	has_many :videos
+	belongs_to :venue
 
 	after_create :add_gallery
 
@@ -10,7 +11,7 @@ class Event < ActiveRecord::Base
 	validates :name, presence: true, uniqueness: {scope: :date}, length: {maximum: 40, minimum: 3}
 	validates :flyer, presence: true
 	validates :date, presence: true
-	validates :venue, presence: true, length: {maximum: 30, minimum: 3}
+	validates :venue_id, presence: true
 	# validate :check_date
 	validate :check_date_format
 

@@ -5,13 +5,11 @@ class CreateGalleries < ActiveRecord::Migration
       t.string :description
       t.string :preview_pic
       t.date :date
-      t.integer :user_id
       t.integer :event_id
 
       t.timestamps
     end
-    add_index :galleries, [:id, :user_id]
-    add_index :galleries, [:id, :user_id, :event_id]
+    add_index :galleries, :id
     add_index :galleries, [:id, :event_id]
   end
 end

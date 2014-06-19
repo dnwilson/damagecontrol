@@ -5,14 +5,11 @@ class CreateEvents < ActiveRecord::Migration
 		t.text :description
 		t.date :date
 		t.string :flyer
-		t.string :venue
-		t.string :address
-		t.string :address
-		t.string :city
-		t.string :state
-		t.string :zipcode
+		t.string :venue_id
 
       t.timestamps
     end
+    add_index :events, :id, unique: true
+    add_index :events, [:id, :venue_id]
   end
 end
