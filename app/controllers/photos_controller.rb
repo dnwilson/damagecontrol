@@ -3,7 +3,6 @@ class PhotosController < ApplicationController
 	before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 	before_filter :verify_is_admin, only: [:new, :create, :edit, :update, :destroy]
 	
-	caches_action :show, layout: false
 
 	def new
 		@photo = Photo.new
@@ -26,7 +25,6 @@ class PhotosController < ApplicationController
 	end
 
 	def destroy
-		@gallery = @photo.gallery
 		@photo.destroy
 	end
 

@@ -29,31 +29,27 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Process files as they are uploaded:
   # process :scale => [200, 300]
-  process :auto_orient
-  
-  # def scale(width, height)
-  #   # do something
-  # end
+  def fix_exif_rotation
+    manipulate! do |img|
+      img.tap(&:auto_orient)
+    end
+  end
 
+  process :fix_exif_rotation
   # Create different versions of your uploaded files:
   version :thumb do
+    process :fix_exif_rotation
     process :resize_to_fill => [150, 150]
   end
 
   version :sm do
+    process :fix_exif_rotation
     process :resize_to_fill => [600, 600]
   end
 
   version :lg do
+    process :fix_exif_rotation
     process :resize_to_limit => [1024, 1024]
-  end
-
-  # Auto-orientate image
-  def auto_orient
-    manipulate! do |img|
-      img.auto_orient
-      img
-    end
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

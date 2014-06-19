@@ -3,7 +3,7 @@
 		<h4>Event</h4>
 		<%= link_to image_tag(event.flyer.sm.url), event.flyer.url, :data => { :colorbox => true }, :class => "group1 cboxElement" %>
 		<h3 class="mar-top10 mar-bot10"><%= link_to event.name, event %></h3>
-		<h5><%= event.date.strftime("%A, %b #{event.date.day.ordinalize} %Y") %></br>@ <%= event.venue %>	
+		<h5><%= event.date.strftime("%A, %b #{event.date.day.ordinalize} %Y") %></br>@ <%= event.venue.name %>	
 		</h5>
 	<% else %>
 		<h4>Event</h4>

@@ -4,7 +4,6 @@ class GalleriesController < ApplicationController
 	before_filter :verify_is_admin, only: [:new, :create, :edit, :update, :destroy]
 	
 	caches_action :index
-	caches_action :show, layout: false
 
 	def new
 		@gallery = Gallery.new
@@ -51,10 +50,10 @@ class GalleriesController < ApplicationController
 		# to handle multiple images upload on update when user add more picture
 			if params[:images]
 				params[:images].each { |image|
-				@gallery.photos.create(image: image)
+					@gallery.photos.create(image: image)
+					expire_action action: :show
 				}
 			end
-			expire_action action: :show
 			flash[:notice] = "Gallery has been updated."
 			redirect_to @gallery
 		else

@@ -15,13 +15,19 @@
 						<%= render "admin_options" %>
 						
 						<% if @gallery.photos.empty? %>
-							<%= render "photo_form" %>
+							<% cache @gallery do %>
+								<%= render "photo_form" %>
+							<% end %>
 						<% else %>
-							<%= render "photos" %>
-							<% if signed_in? %>
-								<div class="row">
-									<%= render partial: "photo_form" %>
-								</div>
+							<% cache @gallery do %>
+								<%= render "photos" %>
+								<% if signed_in? %>
+									<div class="row">
+										<% cache do %>
+											<%= render partial: "photo_form" %>
+										<% end %>
+									</div>
+								<% end %>
 							<% end %>
 						<% end %>
 						<hr>
