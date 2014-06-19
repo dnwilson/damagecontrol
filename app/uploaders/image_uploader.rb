@@ -29,7 +29,8 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Process files as they are uploaded:
   # process :scale => [200, 300]
-  #
+  process :auto_orient
+  
   # def scale(width, height)
   #   # do something
   # end
@@ -45,6 +46,14 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   version :lg do
     process :resize_to_limit => [1024, 1024]
+  end
+
+  # Auto-orientate image
+  def auto_orient
+    manipulate! do |img|
+      img.auto_orient
+      img
+    end
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

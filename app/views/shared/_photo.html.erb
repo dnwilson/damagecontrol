@@ -1,6 +1,8 @@
 <div class="photo-thumb photo-<%= photo.id %> mar-bot10 col-md-3 col-sm-4 col-xs-4" id="photo-<%= photo.id %>" >
 	<%= link_to image_tag(photo.image.thumb.url, :class => "img-rounded"), photo.image.lg.url, :data => { :colorbox => true }, :class => "group1 cboxElement" %>
-	<% if signed_in? %>
-		<div class="delete"><%= link_to "delete", photo, data: {confirm: "Are you sure?", remote: true}, method: :delete %></div>
+	<% cache do %>
+		<% if signed_in? %>
+			<div class="delete"><%= link_to "delete", photo, data: {confirm: "Are you sure?", remote: true}, method: :delete %></div>
+		<% end %>
 	<% end %>
 </div>
