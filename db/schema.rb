@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20140619171523) do
     t.text     "description"
     t.date     "date"
     t.string   "flyer"
-    t.string   "venue_id"
+    t.integer  "venue_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description_html"
