@@ -3,10 +3,10 @@
 	<%= token_tag(nil) %>
 	<%= f.hidden_field :gallery_id, value: @gallery.id %>
 	<%= f.label :image, "Click or Drag images here" %>
-	<%= file_field_tag "images[]", type: :file, multiple: true, :class => "file-input btn-file", :style => "display:none;" %>
+	<%= file_field_tag "images[]", type: :file, multiple: true, :class => "file-input btn-file" %>
 <% end %>
-
+<!-- 
 <script type="text/javascript">
 	$('input[type=file]').bootstrapFileInput();
 	$('.file-inputs').bootstrapFileInput();
-</script>
+</script> -->
