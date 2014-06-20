@@ -16,15 +16,21 @@
 						
 						<% if @gallery.photos.empty? %>
 							<% cache @gallery do %>
-								<%= render "photo_form" %>
+								<% cache do  %>
+									<div class="row">
+										<% if signed_in?%>
+											<%= render "photo_form" %>
+										<% end %>
+									</div>
+								<% end %>
 							<% end %>
 						<% else %>
 							<% cache @gallery do %>
 								<%= render "photos" %>
-								<% if signed_in? %>
+								<% cache do %>
 									<div class="row">
-										<% cache do %>
-											<%= render partial: "photo_form" %>
+										<% if signed_in? %>
+											<%= render "photo_form" %>
 										<% end %>
 									</div>
 								<% end %>

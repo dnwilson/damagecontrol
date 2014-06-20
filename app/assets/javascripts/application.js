@@ -18,6 +18,7 @@
 //= require jquery.isotope.min
 //= require jquery.nicescroll.min
 //= require fancybox/jquery.fancybox.pack
+//= require jquery.colorbox
 //= require skrollr.min
 //= require jquery.scrollTo-1.4.3.1-min
 //= require jquery.localscroll-1.2.7-min
@@ -27,6 +28,5 @@
 //= require main
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
-//= require jquery.colorbox
 //= require turbolinks
 //= require_tree .
